@@ -8,7 +8,7 @@ const AdminLayout = () => {
       <SidebarProvider>
         <AdminSidebar />
         <SidebarInset>
-          <main className="overflow-hidden text-foreground">
+          <main className="overflow-hidden text-foreground p-8">
             <Outlet />
           </main>
         </SidebarInset>
