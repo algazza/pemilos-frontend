@@ -27,7 +27,8 @@ const userData: UserType[] = [
     name: "Wahit Santoso",
     uuid: "6f9619ff-8b86-d011-b42d-00cf4fc964ff",
     username: 1004,
-    role: "Administrator",
+    role: "Murid",
+    grade: 'X PS 1'
   },
   {
     name: "Siti Aisyah",
@@ -52,7 +53,7 @@ const userData: UserType[] = [
     name: "Andi Wijaya",
     uuid: "b2c1a3f1-7d64-4a15-9b8a-7393a4a5b2e1",
     username: 1008,
-    role: "Administrator",
+    role: "Guru",
   },
   {
     name: "Dewi Sartika",
@@ -71,7 +72,7 @@ const userData: UserType[] = [
 
 const User = () => {
   const studentLength = userData.filter(user => user.role === 'Murid').length
-  const staffLength = userData.filter(user => user.role !== 'Murid' && user.role !== 'Administrator').length
+  const staffLength = userData.filter(user => user.role !== 'Murid').length
 
   return (
     <section>

@@ -6,7 +6,6 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
@@ -24,6 +23,7 @@ import {
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 
 export const columns: ColumnDef<UserType>[] = [
   {
@@ -59,9 +59,7 @@ export const columns: ColumnDef<UserType>[] = [
               ? "bg-blue-500"
               : role === "Staff"
               ? "bg-orange-500"
-              : role === "Guru"
-              ? "bg-green-500"
-              : "bg-red-500"
+              : "bg-green-500"
           }`}
         >
           {role}
@@ -117,10 +115,18 @@ export const columns: ColumnDef<UserType>[] = [
                   </div>
                   <div className="grid gap-3">
                     <Label htmlFor="">Role</Label>
-                    <Input
-                      name="role"
-                      defaultValue={user.role}
-                    />
+                    <Select defaultValue={user.role}>
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder='Select role'/>
+                      </SelectTrigger>
+                      <SelectContent className="dark text-foreground">
+                        <SelectGroup>
+                          <SelectItem value="Murid">Murid</SelectItem>
+                          <SelectItem value="Guru">Guru</SelectItem>
+                          <SelectItem value="Staff">Staff</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
                 <DialogFooter>
