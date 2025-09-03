@@ -5,7 +5,7 @@ export const UserSchema = z.object({
   uuid: z.string().uuid(),
   username: z.number(),
   role: z.enum(["Murid", "Guru", "Staff"]),
-  grade: z.string().optional()
+  kelas: z.string().optional()
 });
 
 export type UserType = z.infer<typeof UserSchema>;

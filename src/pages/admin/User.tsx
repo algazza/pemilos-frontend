@@ -9,7 +9,7 @@ const userData: UserType[] = [
     uuid: "550e8400-e29b-41d4-a716-446655440000",
     username: 1001,
     role: "Murid",
-    grade: 'XI DKV 1'
+    kelas: 'XI DKV 1'
   },
   {
     name: "Nathan Ardiansyah",
@@ -28,14 +28,14 @@ const userData: UserType[] = [
     uuid: "6f9619ff-8b86-d011-b42d-00cf4fc964ff",
     username: 1004,
     role: "Murid",
-    grade: 'X PS 1'
+    kelas: 'X PS 1'
   },
   {
     name: "Siti Aisyah",
     uuid: "16fd2706-8baf-433b-82eb-8c7fada847da",
     username: 1005,
     role: "Murid",
-    grade: 'XI TJKT 1'
+    kelas: 'XI TJKT 1'
   },
   {
     name: "Budi Prasetyo",
@@ -60,7 +60,7 @@ const userData: UserType[] = [
     uuid: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
     username: 1009,
     role: "Murid",
-    grade: 'XI PPLG 1'
+    kelas: 'XI PPLG 1'
   },
   {
     name: "Galih Saputra",
