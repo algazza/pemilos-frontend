@@ -73,7 +73,7 @@ const userData: UserType[] = [
 
 const User = () => {
   const studentLength = userData.filter((user) => user.role === "Murid").length;
-  const staffLength = userData.filter((user) => user.role !== "Murid").length;
+  const staffLength = userData.filter((user) => user.role === "Guru" || user.role === 'Staff').length;
 
   return (
     <section>

@@ -42,7 +42,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="w-full">
-      <div className="py-4 w-full">
+      <div className="py-4 max-w-sm">
         <Input
           placeholder="Search Name..."
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
