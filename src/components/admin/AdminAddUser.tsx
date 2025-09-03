@@ -20,7 +20,7 @@ const AdminAddUser = ({
   isNewUser,
 }: {
   children: React.ReactNode;
-  user: UserType;
+  user?: UserType;
   isNewUser: boolean
 }) => {
   return (
@@ -34,27 +34,27 @@ const AdminAddUser = ({
           <div className="grid gap-4">
             <div className="grid gap-3">
               <Label htmlFor="">Nama</Label>
-              <Input name="name" defaultValue={user.name} />
+              <Input name="name" defaultValue={user?.name} />
             </div>
             <div className="grid gap-3">
               <Label htmlFor="">Kelas</Label>
-              <Input name="grade" defaultValue={user.kelas} />
+              <Input name="grade" defaultValue={user?.kelas} />
             </div>
             <div className="grid gap-3">
               <Label htmlFor="">UUID</Label>
-              <Input name="uuid" defaultValue={user.uuid} />
+              <Input name="uuid" defaultValue={user?.uuid} />
             </div>
             <div className="grid gap-3">
               <Label htmlFor="">Username</Label>
               <Input
                 id="username-1"
                 name="username"
-                defaultValue={user.username}
+                defaultValue={user?.username}
               />
             </div>
             <div className="grid gap-3">
               <Label htmlFor="">Role</Label>
-              <Select defaultValue={user.role}>
+              <Select defaultValue={user?.role}>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select role" />
                 </SelectTrigger>
