@@ -35,7 +35,7 @@ export const columns: ColumnDef<UserType>[] = [
       return (
         <div className="grid gap-[0.3]">
           <h1 className="font-bold">{name.name}</h1>
-          <span className="text-xs">{name.grade}</span>
+          <span className="text-xs">{name.kelas}</span>
         </div>
       );
     },

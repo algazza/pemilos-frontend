@@ -1,3 +1,4 @@
+import AdminAddUser from "@/components/admin/AdminAddUser";
 import { columns } from "@/components/admin/AdminTabel";
 import { DataTable } from "@/components/DataTable";
 import { Button } from "@/components/ui/button";
@@ -9,7 +10,7 @@ const userData: UserType[] = [
     uuid: "550e8400-e29b-41d4-a716-446655440000",
     username: 1001,
     role: "Murid",
-    kelas: 'XI DKV 1'
+    kelas: "XI DKV 1",
   },
   {
     name: "Nathan Ardiansyah",
@@ -28,14 +29,14 @@ const userData: UserType[] = [
     uuid: "6f9619ff-8b86-d011-b42d-00cf4fc964ff",
     username: 1004,
     role: "Murid",
-    kelas: 'X PS 1'
+    kelas: "X PS 1",
   },
   {
     name: "Siti Aisyah",
     uuid: "16fd2706-8baf-433b-82eb-8c7fada847da",
     username: 1005,
     role: "Murid",
-    kelas: 'XI TJKT 1'
+    kelas: "XI TJKT 1",
   },
   {
     name: "Budi Prasetyo",
@@ -60,7 +61,7 @@ const userData: UserType[] = [
     uuid: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
     username: 1009,
     role: "Murid",
-    kelas: 'XI PPLG 1'
+    kelas: "XI PPLG 1",
   },
   {
     name: "Galih Saputra",
@@ -71,8 +72,8 @@ const userData: UserType[] = [
 ];
 
 const User = () => {
-  const studentLength = userData.filter(user => user.role === 'Murid').length
-  const staffLength = userData.filter(user => user.role !== 'Murid').length
+  const studentLength = userData.filter((user) => user.role === "Murid").length;
+  const staffLength = userData.filter((user) => user.role !== "Murid").length;
 
   return (
     <section>
@@ -81,10 +82,12 @@ const User = () => {
         <div className="flex gap-2">
           <Button>Ekspor (Excel)</Button>
           <Button>Tambah (CSV)</Button>
-          <Button>Tambah</Button>
+          <AdminAddUser isNewUser={true}>
+            <Button>Tambah</Button>
+          </AdminAddUser>
         </div>
       </div>
-      
+
       <div className="grid gap-2 mt-4">
         <div className="w-full px-2 py-2 rounded-xl border-2 text-center">
           Jumlah Siswa: {studentLength}, Jumlah Guru/Karyawan {staffLength}
