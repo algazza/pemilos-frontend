@@ -23,19 +23,9 @@ const items = [
     icon: User,
   },
   {
-    title: "Setting",
-    url: "/admin/setting",
-    icon: Settings,
-  },
-  {
     title: "Kandidat",
     url: "/admin/candidate",
     icon: UsersRound,
-  },
-  {
-    title: "Suara",
-    url: "/admin/vote",
-    icon: ClipboardList,
   },
 ];
 
