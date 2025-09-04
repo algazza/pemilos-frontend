@@ -29,7 +29,7 @@ const AdminAddUser = ({
         <DialogTrigger className="cursor-pointer">{children}</DialogTrigger>
         <DialogContent className="sm:max-w-[425px] dark text-foreground">
           <DialogHeader>
-            <DialogTitle>Edit user</DialogTitle>
+            <DialogTitle>{isNewUser ? 'Tambah user' :'Edit user'}</DialogTitle>
           </DialogHeader>
           <div className="grid gap-4">
             <div className="grid gap-3">

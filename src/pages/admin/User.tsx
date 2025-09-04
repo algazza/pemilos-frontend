@@ -83,7 +83,7 @@ const User = () => {
           <Button>Ekspor (Excel)</Button>
           <Button>Tambah (CSV)</Button>
           <AdminAddUser isNewUser={true}>
-            <Button>Tambah</Button>
+            <Button type="button">Tambah</Button>
           </AdminAddUser>
         </div>
       </div>
