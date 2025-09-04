@@ -27,6 +27,11 @@ const items = [
     url: "/admin/candidate",
     icon: UsersRound,
   },
+  {
+    title: "Suara",
+    url: "/admin/vote",
+    icon: ClipboardList,
+  },
 ];
 
 const AdminSidebar = () => {
