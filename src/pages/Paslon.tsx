@@ -78,8 +78,8 @@ const PaslonPage: React.FC = () => {
             </motion.div>
           </div>
         </div>
-        
-        <div className="flex flex-col items-center mt-4 md:mt-0 gap-4">
+
+        <div className="flex flex-col items-center gap-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
