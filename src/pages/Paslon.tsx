@@ -1,32 +1,44 @@
-import React from "react";
-import ImanSVG from "@/assets/Iman.svg";
+import React, { useEffect, useState } from "react";
+import ImanSVG from "@/assets/paslon/Iman 1.svg";
+import Iman2 from "@/assets/paslon/Iman 2.png";
+import Iman3 from "@/assets/paslon/Iman 3.png";
 
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
+
+const candidateDetails = {
+  number: 1,
+  quote: "Suara Kita, Aksi Kita, Masa Depan Kita!",
+  name: "M. Iman Sigma",
+
+  vision:
+    "Mewujudkan OSIS sebagai wadah kreatif, inovatif, dan solid yang mampu mengembangkan potensi siswa serta menciptakan lingkungan sekolah yang nyaman, berprestasi, dan berkarakter.",
+  mission: [
+    "Meningkatkan partisipasi siswa dalam kegiatan OSIS melalui program-program yang menarik dan relevan.",
+    "Mengembangkan bakat dan minat siswa melalui berbagai ekstrakurikuler dan pelatihan keterampilan.",
+    "Menciptakan lingkungan sekolah yang inklusif, aman, dan nyaman",
+  ],
+
+  programs: [
+    "Pelatihan Kepemimpinan dan Manajemen Organisasi untuk anggota OSIS.",
+    "Peningkatan Kualitas Ekstrakurikuler melalui workshop dan kompetisi antar sekolah.",
+    "Kampanye Lingkungan Hidup seperti penanaman pohon dan pengelolaan sampah.",
+    "Program Kesehatan Mental dengan menghadirkan narasumber dan sesi konseling.",
+    "Festival Seni dan Budaya untuk menampilkan bakat siswa dalam seni pertunjukan dan kerajinan.",
+  ],
+};
+
+const images = [ImanSVG, Iman2, Iman3];
 
 const PaslonPage: React.FC = () => {
-  const candidateDetails = {
-    number: 1,
-    quote: "Suara Kita, Aksi Kita, Masa Depan Kita!",
-    name: "M. Iman Sigma",
+  const [indeximg, setIndeximg] = useState(0);
 
-    vision:
-      "Mewujudkan OSIS sebagai wadah kreatif, inovatif, dan solid yang mampu mengembangkan potensi siswa serta menciptakan lingkungan sekolah yang nyaman, berprestasi, dan berkarakter.",
-    mission: [
-      "Meningkatkan partisipasi siswa dalam kegiatan OSIS melalui program-program yang menarik dan relevan.",
-      "Mengembangkan bakat dan minat siswa melalui berbagai ekstrakurikuler dan pelatihan keterampilan.",
-      "Menciptakan lingkungan sekolah yang inklusif, aman, dan nyaman",
-    ],
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndeximg((prev) => (prev + 1) % images.length);
+    }, 750);
 
-    programs: [
-      "Pelatihan Kepemimpinan dan Manajemen Organisasi untuk anggota OSIS.",
-      "Peningkatan Kualitas Ekstrakurikuler melalui workshop dan kompetisi antar sekolah.",
-      "Kampanye Lingkungan Hidup seperti penanaman pohon dan pengelolaan sampah.",
-      "Program Kesehatan Mental dengan menghadirkan narasumber dan sesi konseling.",
-      "Festival Seni dan Budaya untuk menampilkan bakat siswa dalam seni pertunjukan dan kerajinan.",
-    ],
-  };
-
-  
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="flex justify-center items-center">
@@ -53,11 +65,16 @@ const PaslonPage: React.FC = () => {
               }}
               className="w-100 h-fit lg:h-100"
             >
-              <img
-                src={ImanSVG}
-                alt={candidateDetails.name}
-                className="object-center object-contain overflow-hidden"
-              />
+              <AnimatePresence>
+                <motion.img
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  src={images[indeximg]}
+                  alt={candidateDetails.name}
+                  className="object-center object-contain overflow-hidden"
+                />
+              </AnimatePresence>
             </motion.div>
           </div>
         </div>
