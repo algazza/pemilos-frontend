@@ -29,9 +29,6 @@ const Home = () => {
           8 Semarang. Bijaklah dalam memilih untuk menciptakan perubahan yang
           berarti
         </p>
-        <Button className="bg-[#d9d9d9] text-[#242633] w-fit">
-          Cek Visi Misi Mereka
-        </Button>
         </div>
       </section>
 
