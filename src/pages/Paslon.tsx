@@ -42,7 +42,7 @@ const PaslonPage: React.FC = () => {
 
   return (
     <div className="flex justify-center items-center">
-      <div className="w-full max-w-[1440px] flex flex-col lg:flex-row items-center justify-center p-6 gap-16">
+      <div className="w-full max-w-[1440px] flex flex-col lg:flex-row items-center justify-center gap-16">
         <div className="flex flex-col items-center ">
           <h2 className="text-4xl font-semibold bg-gradient-to-r to-[#648f9b] from-[#92D1E1] bg-clip-text text-transparent">
             OSIS
