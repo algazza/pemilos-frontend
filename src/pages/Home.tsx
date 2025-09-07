@@ -2,7 +2,6 @@ import snapan from "../assets/Logo Sekolah.svg";
 import mpk from "../assets/Logo MPK.svg";
 import osis from "../assets/Logo Osis.svg";
 import Paslon from "../assets/paslon/mas yesking.svg";
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 const Home = () => {
   return (
