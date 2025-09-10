@@ -31,7 +31,7 @@ export const candidateDisplay = {
   ],
 };
 
-export const aldenDetails: DetailsType = {
+export const MPK01Details: DetailsType = {
   number: 1,
   organization: "MPK",
   quote: "Bersama 01, melangkah maju",
@@ -54,7 +54,7 @@ export const aldenDetails: DetailsType = {
   ],
 };
 
-export const SevaDetails: DetailsType = {
+export const MPK02Details: DetailsType = {
   number: 2,
   organization: "MPK",
   name: "Seva Adinda Purwadani",
