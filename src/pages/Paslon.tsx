@@ -19,7 +19,7 @@ const candidateDetails = {
   ],
 
   programs: [
-    "Pelatihan Kepemimpinan dan Manajemen Organisasi untuk anggota OSIS.",
+    `Speak Your Mind Day <br/> Hari khusus bagi siswa untuk menyampaikan aspirasi langsung kepada MPK`,
     "Peningkatan Kualitas Ekstrakurikuler melalui workshop dan kompetisi antar sekolah.",
     "Kampanye Lingkungan Hidup seperti penanaman pohon dan pengelolaan sampah.",
     "Program Kesehatan Mental dengan menghadirkan narasumber dan sesi konseling.",
@@ -41,16 +41,18 @@ const PaslonPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center text-xs md:text-sm">
       <div className="w-full max-w-[1440px] flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-16">
         <div className="flex flex-col items-center ">
           <h2 className="text-4xl font-semibold bg-gradient-to-r to-[#648f9b] from-[#92D1E1] bg-clip-text text-transparent">
             OSIS
           </h2>
           <div className="mt-4 flex flex-col justify-center items-center">
-            <p className="text-xs font-bold bg-gradient-to-r from-[#648f9b] to-[#6c7e83] bg-clip-text text-transparent">
-              {candidateDetails.quote}
-            </p>
+            {candidateDetails?.quote && (
+              <p className="font-bold bg-gradient-to-r from-[#648f9b] to-[#6c7e83] bg-clip-text text-transparent">
+                {candidateDetails?.quote}
+              </p>
+            )}
             <h1 className="text-4xl md:text-5xl paslon-name font-extrabold italic p-1">
               {candidateDetails.name}
             </h1>
@@ -106,10 +108,9 @@ const PaslonPage: React.FC = () => {
                 damping: 13,
                 delay: 0.1,
               }}
-              className="text-xs opacity-75"
-            >
-              {candidateDetails.vision}
-            </motion.p>
+              className="opacity-75"
+              dangerouslySetInnerHTML={{__html: candidateDetails.vision}}
+            />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -157,10 +158,9 @@ const PaslonPage: React.FC = () => {
                       damping: 13,
                       delay: 0.1 * idx + 0.5,
                     }}
-                    className="text-xs opacity-75"
-                  >
-                    {misi}
-                  </motion.p>
+                    className="opacity-75"
+                    dangerouslySetInnerHTML={{__html: misi}}
+                  />
                 </div>
               ))}
             </div>
@@ -183,7 +183,7 @@ const PaslonPage: React.FC = () => {
             </div>
             <hr className="opacity-20" />
             <div className="flex flex-col gap-1">
-              {candidateDetails.programs.map((progker, idx) => (
+              {candidateDetails.programs.map((proker, idx) => (
                 <div
                   key={idx}
                   className="flex items-start gap-2 overflow-hidden"
@@ -211,10 +211,9 @@ const PaslonPage: React.FC = () => {
                       damping: 13,
                       delay: 0.1 * idx + 0.5,
                     }}
-                    className="text-xs opacity-75"
-                  >
-                    {progker}
-                  </motion.p>
+                    className="opacity-75"
+                    dangerouslySetInnerHTML={{__html: proker}}
+                  />
                 </div>
               ))}
             </div>
