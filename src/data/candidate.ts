@@ -1,7 +1,7 @@
-import Rafif from "@/assets/paslon/Rafif-1-1.svg";
-import Zahra from "@/assets/paslon/Zahra-2-1.svg";
-import Alden from "@/assets/paslon/Alden-1-q.svg";
-import Seva from "@/assets/paslon/Seva-2-2.svg";
+import Rafif from "@/assets/Caketos 1/Rafif-1-1.svg";
+import Zahra from "@/assets/Caketos 2/Zahra-2-1.svg";
+import Alden from "@/assets/Caketum 1/Alden-1-1.svg";
+import Seva from "@/assets/Caketum 2/Seva-2-2.svg";
 
 export const candidateDisplay = {
   OSIS: [
@@ -29,3 +29,4 @@ export const candidateDisplay = {
     },
   ],
 };
+
