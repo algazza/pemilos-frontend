@@ -4,9 +4,11 @@ import Iman2 from "@/assets/paslon/Iman 2.png";
 import Iman3 from "@/assets/paslon/Iman 3.png";
 
 import { AnimatePresence, motion } from "motion/react";
+import type { DetailsType } from "@/schema/details.schema";
 
-const candidateDetails = {
+const candidateDetails: DetailsType = {
   number: 1,
+  organization: "MPK",
   quote: "Suara Kita, Aksi Kita, Masa Depan Kita!",
   name: "M. Iman Sigma",
 
@@ -19,7 +21,7 @@ const candidateDetails = {
   ],
 
   programs: [
-    `Speak Your Mind Day <br/> Hari khusus bagi siswa untuk menyampaikan aspirasi langsung kepada MPK`,
+    "Speak Your Mind Day <br/> Hari khusus bagi siswa untuk menyampaikan aspirasi langsung kepada MPK",
     "Peningkatan Kualitas Ekstrakurikuler melalui workshop dan kompetisi antar sekolah.",
     "Kampanye Lingkungan Hidup seperti penanaman pohon dan pengelolaan sampah.",
     "Program Kesehatan Mental dengan menghadirkan narasumber dan sesi konseling.",
@@ -109,7 +111,7 @@ const PaslonPage: React.FC = () => {
                 delay: 0.1,
               }}
               className="opacity-75"
-              dangerouslySetInnerHTML={{__html: candidateDetails.vision}}
+              dangerouslySetInnerHTML={{ __html: candidateDetails.vision }}
             />
           </motion.div>
           <motion.div
@@ -159,7 +161,7 @@ const PaslonPage: React.FC = () => {
                       delay: 0.1 * idx + 0.5,
                     }}
                     className="opacity-75"
-                    dangerouslySetInnerHTML={{__html: misi}}
+                    dangerouslySetInnerHTML={{ __html: misi }}
                   />
                 </div>
               ))}
@@ -212,7 +214,7 @@ const PaslonPage: React.FC = () => {
                       delay: 0.1 * idx + 0.5,
                     }}
                     className="opacity-75"
-                    dangerouslySetInnerHTML={{__html: proker}}
+                    dangerouslySetInnerHTML={{ __html: proker }}
                   />
                 </div>
               ))}
