@@ -1,19 +1,25 @@
-import Rafif from "@/assets/Caketos 1/Rafif-1-1.svg";
-import Rafif1 from "@/assets/Caketos 1/Rafif-osis-1.svg";
-import Rafif2 from "@/assets/Caketos 1/Rafif-osis-2.svg";
-import Rafif3 from "@/assets/Caketos 1/Rafif-osis-3.svg";
-import Zahra from "@/assets/Caketos 2/Zahra-2-1.svg";
-import Zahra1 from "@/assets/Caketos 2/Zahra-osis-1.svg";
-import Zahra2 from "@/assets/Caketos 2/Zahra-osis-2.svg";
-import Zahra3 from "@/assets/Caketos 2/Zahra-osis-3.svg";
-import Alden from "@/assets/Caketum 1/Alden-1-1.svg";
-import Alden1 from "@/assets/Caketum 1/Alden-mpk-1.svg";
-import Alden2 from "@/assets/Caketum 1/Alden-mpk-2.svg";
-import Alden3 from "@/assets/Caketum 1/Alden-mpk-3.svg";
-import Seva from "@/assets/Caketum 2/Seva-2-2.svg";
-import Seva1 from "@/assets/Caketum 2/Seva-mpk-1.svg";
-import Seva2 from "@/assets/Caketum 2/Seva-mpk-2.svg";
-import Seva3 from "@/assets/Caketum 2/Seva-mpk-3.svg";
+import BackgroundMPK01 from '@/assets/Caketum 1/template-mpk-1.png';
+import Alden from "@/assets/Caketum 1/Alden-1.png";
+import Alden1 from "@/assets/Caketum 1/Alden-mpk-1.png";
+import Alden2 from "@/assets/Caketum 1/Alden-mpk-2.png";
+import Alden3 from "@/assets/Caketum 1/Alden-mpk-3.png";
+import BackgroundMPK02 from '@/assets/Caketum 2/template-mpk-2.png';
+import Seva from "@/assets/Caketum 2/Seva-2.png";
+import Seva1 from "@/assets/Caketum 2/Seva-mpk-1.png";
+import Seva2 from "@/assets/Caketum 2/Seva-mpk-2.png";
+import Seva3 from "@/assets/Caketum 2/Seva-mpk-3.png";
+import BackgroundMPK03 from '@/assets/Caketum 3/template-mpk-3.png';
+import BackgroundOSIS01 from '@/assets/Caketos 1/template-osis-1.png';
+import Rafif from "@/assets/Caketos 1/Rafif-1.png";
+import Rafif1 from "@/assets/Caketos 1/Rafif-osis-1.png";
+import Rafif2 from "@/assets/Caketos 1/Rafif-osis-2.png";
+import Rafif3 from "@/assets/Caketos 1/Rafif-osis-3.png";
+import BackgroundOSIS02 from '@/assets/Caketos 2/template-osis-2.png';
+import Zahra from "@/assets/Caketos 2/Zahra-2.png";
+import Zahra1 from "@/assets/Caketos 2/Zahra-osis-1.png";
+import Zahra2 from "@/assets/Caketos 2/Zahra-osis-2.png";
+import Zahra3 from "@/assets/Caketos 2/Zahra-osis-3.png";
+import BackgroundOSIS03 from '@/assets/Caketos 3/template-osis-3.png';
 import type { DetailsType } from "@/schema/details.schema";
 
 export const candidateDisplay = {
@@ -48,6 +54,8 @@ export const MPK01Details: DetailsType = {
   organization: "MPK",
   quote: "Bersama 01, melangkah maju",
   name: "Alden Fathin Hanif",
+
+  background: BackgroundMPK01,
   images: [Alden1, Alden2, Alden3],
 
   vision:
@@ -71,6 +79,8 @@ export const MPK02Details: DetailsType = {
   number: 2,
   organization: "MPK",
   name: "Seva Adinda Purwadani",
+
+  background: BackgroundMPK02,
   images: [Seva1, Seva2, Seva3],
 
   vision:
@@ -93,6 +103,8 @@ export const OSIS01Details: DetailsType = {
   number: 1,
   organization: "OSIS",
   name: "Rafif Firza Putra",
+
+  background: BackgroundOSIS01,
   images: [Rafif1, Rafif2, Rafif3],
 
   vision:
@@ -117,6 +129,8 @@ export const OSIS02Details: DetailsType = {
   number: 2,
   organization: "OSIS",
   name: "Zahra Rizky Megasaputri",
+
+  background: BackgroundOSIS02,
   images: [Zahra1, Zahra2, Zahra3],
 
   vision:
