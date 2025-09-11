@@ -93,8 +93,7 @@ export const OSIS01Details: DetailsType = {
   number: 1,
   organization: "OSIS",
   name: "Rafif Firza Putra",
-    images: [Rafif1, Rafif2, Rafif3],
-
+  images: [Rafif1, Rafif2, Rafif3],
 
   vision:
     "Mendorong OSIS dan siswa di SMKN 8 Semarang menjadi lebih KARSA ( KOLABORATIF, AMANAH, RUKUN, SINERGI, AKTIF ) dan memiliki etos kerja yang tinggi dan memiliki daya saing tinggi.",
@@ -102,7 +101,7 @@ export const OSIS01Details: DetailsType = {
     "Berkolaborasi, membantu, mengawasi,seluruh kegiatan ekstrakurikuler dan organisasi",
     "Memberikan tempat berkembang bagi seluruh siswa yang memiliki potensi dalam bidang akademik dan non akademik",
     "Membangun lingkungan yang inklusif dan nyaman untuk seluruh siswa berkembang",
-    "Mewujudkan sekolah go green dan bebas dari sampah, dengan melaksanakan kebersihan sebulan sekali"
+    "Mewujudkan sekolah go green dan bebas dari sampah, dengan melaksanakan kebersihan sebulan sekali",
   ],
 
   programs: [
@@ -110,7 +109,7 @@ export const OSIS01Details: DetailsType = {
     "Memaksimalkan grup koordinator ekstrakurikuler dan organisasi untuk bertukar informasi tentang lomba",
     "Mengadakan kegiatan pertemuan dengan koordinator ekstrakurikuler untuk berkoordinasi tentang program kerja yang akan terlaksana 1 tahun kedepan",
     "Melaksanakan pertemuan dengan waka kurikulum untuk membentuk jadwal event untuk seluruh organisasi dan ekstrakurikuler",
-    "Mengadakan kegiatan bersih bersih setiap sebulan sekali yang diikuti semua siswa guru dan seluruh warga sekolah"
+    "Mengadakan kegiatan bersih bersih setiap sebulan sekali yang diikuti semua siswa guru dan seluruh warga sekolah",
   ],
 };
 
@@ -120,18 +119,18 @@ export const OSIS02Details: DetailsType = {
   name: "Zahra Rizky Megasaputri",
   images: [Zahra1, Zahra2, Zahra3],
 
-  vision: 
+  vision:
     "Mewujudkan OSIS SMK Negeri 8 Semarang sebagai organisasi aktif, kreatif, dan inovatif melalui kegiatan yang positif dan juga berdampak bagi siswa siswi. Untuk membentuk siswa siswi yang berkarakter, berprestasi, dan berjiwa sosial",
   mission: [
     "Menyediakan wadah bagi siswa siswi SMK Negeri 8 Semarang untuk memberi inpirasi dan edukasi melalui konten kreatif di media sosial (Snapan Talk)",
     "Menumbuhkan kepedulian sosial dan kesadaran lingkungan melalui kegiatan yang kreatif, edukatif, serta ramah lingkungan (Ecocraft)",
     "Mengembangkan program kerja OSIS sebelumnya, seperti studi banding dan dukungan penuh terhadap proker tiap sekbid, agar tercipta kesinambungan organisasi",
-    "Menjadi fasilitator dalam membangun perilaku positif di sekolah, baik dalam aspek akademik maupun non-akademik"
+    "Menjadi fasilitator dalam membangun perilaku positif di sekolah, baik dalam aspek akademik maupun non-akademik",
   ],
 
   programs: [
     "<span className='font-bold'>Snapan Talk</span> adalah program kerja yang akan menayangkan konten dengan memanfaatkan platform media sosial seperti IG dan TikTok. Dengan mengundang siswa siswi berprestasi di bidang akademik maupun non-akademik. Snapan Talk juga akan membahas topik seputar anak sekolah atau remaja yang pastinya menarik, menginspirasi, dan mengudakasi pada setiap episode nya",
     "<span className='font-bold'>EcoCraft (Karya Ramah Lingkungan)</span> adalah kegiatan membuat kerajinan tangan dengan memanfaatkan barang bekas yang dapat diolah atau di daur ulang, agar nantinya dapat digunakan kembali menjadi barang yang lebih bermanfaat dan memiliki nilai jual",
-    "Melanjutkan program kerja yang sebelumnya sudah dibawa oleh ketua sebelumnya, yaitu Studi Banding & Mendukung Proker Setiap Sekbid"
+    "Melanjutkan program kerja yang sebelumnya sudah dibawa oleh ketua sebelumnya, yaitu Studi Banding & Mendukung Proker Setiap Sekbid",
   ],
 };
