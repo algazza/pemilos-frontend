@@ -8,7 +8,7 @@ import Seva from "@/assets/Caketum 2/Seva-2.png";
 import Seva1 from "@/assets/Caketum 2/Seva-mpk-1.png";
 import Seva2 from "@/assets/Caketum 2/Seva-mpk-2.png";
 import Seva3 from "@/assets/Caketum 2/Seva-mpk-3.png";
-import BackgroundMPK03 from '@/assets/Caketum 3/template-mpk-3.png';
+// import BackgroundMPK03 from '@/assets/Caketum 3/template-mpk-3.png';
 import BackgroundOSIS01 from '@/assets/Caketos 1/template-osis-1.png';
 import Rafif from "@/assets/Caketos 1/Rafif-1.png";
 import Rafif1 from "@/assets/Caketos 1/Rafif-osis-1.png";
@@ -19,7 +19,7 @@ import Zahra from "@/assets/Caketos 2/Zahra-2.png";
 import Zahra1 from "@/assets/Caketos 2/Zahra-osis-1.png";
 import Zahra2 from "@/assets/Caketos 2/Zahra-osis-2.png";
 import Zahra3 from "@/assets/Caketos 2/Zahra-osis-3.png";
-import BackgroundOSIS03 from '@/assets/Caketos 3/template-osis-3.png';
+// import BackgroundOSIS03 from '@/assets/Caketos 3/template-osis-3.png';
 import type { DetailsType } from "@/schema/details.schema";
 
 export const candidateDisplay = {

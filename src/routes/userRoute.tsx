@@ -3,7 +3,6 @@ import { MPK01Details, MPK02Details, OSIS01Details, OSIS02Details } from "@/data
 import MainLayout from "@/layouts/MainLayout";
 import CalonPage from "@/pages/Calon";
 import Home from "@/pages/Home";
-import PaslonPage from "@/pages/Paslon";
 
 export const detailsMap = {
   "MPK-1": MPK01Details,
@@ -18,7 +17,6 @@ const userRoute = {
   errorElement: <Error />, 
   children: [
     { index: true, element: <Home /> },
-    { path: "paslon", element: <PaslonPage /> },
     { path: ":orgz/:number", element: <CalonPage /> },
   ],
 };
