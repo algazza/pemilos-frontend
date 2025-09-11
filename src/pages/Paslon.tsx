@@ -11,6 +11,7 @@ const candidateDetails: DetailsType = {
   organization: "MPK",
   quote: "Suara Kita, Aksi Kita, Masa Depan Kita!",
   name: "M. Iman Sigma",
+  images: [ImanSVG, Iman2, Iman3],
 
   vision:
     "Mewujudkan OSIS sebagai wadah kreatif, inovatif, dan solid yang mampu mengembangkan potensi siswa serta menciptakan lingkungan sekolah yang nyaman, berprestasi, dan berkarakter.",
@@ -29,14 +30,12 @@ const candidateDetails: DetailsType = {
   ],
 };
 
-const images = [ImanSVG, Iman2, Iman3];
-
 const PaslonPage: React.FC = () => {
   const [indeximg, setIndeximg] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndeximg((prev) => (prev + 1) % images.length);
+      setIndeximg((prev) => (prev + 1) % candidateDetails.images.length);
     }, 750);
 
     return () => clearInterval(interval);
@@ -74,7 +73,7 @@ const PaslonPage: React.FC = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  src={images[indeximg]}
+                  src={candidateDetails.images[indeximg]}
                   alt={candidateDetails.name}
                   className="object-center object-contain overflow-hidden"
                 />

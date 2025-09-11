@@ -1,22 +1,22 @@
 import Rafif from "@/assets/Caketos 1/Rafif-1-1.svg";
+import Rafif1 from "@/assets/Caketos 1/Rafif-osis-1.svg";
+import Rafif2 from "@/assets/Caketos 1/Rafif-osis-2.svg";
+import Rafif3 from "@/assets/Caketos 1/Rafif-osis-3.svg";
 import Zahra from "@/assets/Caketos 2/Zahra-2-1.svg";
+import Zahra1 from "@/assets/Caketos 2/Zahra-osis-1.svg";
+import Zahra2 from "@/assets/Caketos 2/Zahra-osis-2.svg";
+import Zahra3 from "@/assets/Caketos 2/Zahra-osis-3.svg";
 import Alden from "@/assets/Caketum 1/Alden-1-1.svg";
+import Alden1 from "@/assets/Caketum 1/Alden-mpk-1.svg";
+import Alden2 from "@/assets/Caketum 1/Alden-mpk-2.svg";
+import Alden3 from "@/assets/Caketum 1/Alden-mpk-3.svg";
 import Seva from "@/assets/Caketum 2/Seva-2-2.svg";
+import Seva1 from "@/assets/Caketum 2/Seva-mpk-1.svg";
+import Seva2 from "@/assets/Caketum 2/Seva-mpk-2.svg";
+import Seva3 from "@/assets/Caketum 2/Seva-mpk-3.svg";
 import type { DetailsType } from "@/schema/details.schema";
 
 export const candidateDisplay = {
-  OSIS: [
-    {
-      id: 1,
-      name: "Rafif",
-      img: Rafif,
-    },
-    {
-      id: 2,
-      name: "Zahra",
-      img: Zahra,
-    },
-  ],
   MPK: [
     {
       id: 1,
@@ -29,6 +29,18 @@ export const candidateDisplay = {
       img: Seva,
     },
   ],
+  OSIS: [
+    {
+      id: 1,
+      name: "Rafif",
+      img: Rafif,
+    },
+    {
+      id: 2,
+      name: "Zahra",
+      img: Zahra,
+    },
+  ],
 };
 
 export const MPK01Details: DetailsType = {
@@ -36,6 +48,7 @@ export const MPK01Details: DetailsType = {
   organization: "MPK",
   quote: "Bersama 01, melangkah maju",
   name: "Alden Fathin Hanif",
+  images: [Alden1, Alden2, Alden3],
 
   vision:
     "Mewujudkan MPK sebagai lembaga perwakilan siswa yang aspiratif, transparan, dan bertanggung jawab dalam mengawal kinerja OSIS serta membangun budaya sekolah yang aktif, kreatif, dan demokratis",
@@ -58,6 +71,7 @@ export const MPK02Details: DetailsType = {
   number: 2,
   organization: "MPK",
   name: "Seva Adinda Purwadani",
+  images: [Seva1, Seva2, Seva3],
 
   vision:
     "Menjadikan organisasi MPK sebagai wadah untuk menampung dan melaksanakan aspirasi serta inspirasi, dengan memegang teguh nilai BINTANG (Berkkompeten, berlandaskan Iman, dan bertanggung jawab).",
@@ -79,6 +93,8 @@ export const OSIS01Details: DetailsType = {
   number: 1,
   organization: "OSIS",
   name: "Rafif Firza Putra",
+    images: [Rafif1, Rafif2, Rafif3],
+
 
   vision:
     "Mendorong OSIS dan siswa di SMKN 8 Semarang menjadi lebih KARSA ( KOLABORATIF, AMANAH, RUKUN, SINERGI, AKTIF ) dan memiliki etos kerja yang tinggi dan memiliki daya saing tinggi.",
@@ -102,6 +118,7 @@ export const OSIS02Details: DetailsType = {
   number: 2,
   organization: "OSIS",
   name: "Zahra Rizky Megasaputri",
+  images: [Zahra1, Zahra2, Zahra3],
 
   vision: 
     "Mewujudkan OSIS SMK Negeri 8 Semarang sebagai organisasi aktif, kreatif, dan inovatif melalui kegiatan yang positif dan juga berdampak bagi siswa siswi. Untuk membentuk siswa siswi yang berkarakter, berprestasi, dan berjiwa sosial",
