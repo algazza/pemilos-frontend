@@ -102,10 +102,10 @@ export const MPK02Details: DetailsType = {
   images: [Seva1, Seva2, Seva3],
 
   vision:
-    "Menjadikan organisasi MPK sebagai wadah untuk menampung dan melaksanakan aspirasi serta inspirasi, dengan memegang teguh nilai BINTANG (Berkkompeten, berlandaskan Iman, dan bertanggung jawab)",
+    "Menjadikan organisasi MPK sebagai wadah untuk menampung dan melaksanakan aspirasi serta inspirasi, dengan memegang teguh nilai BINTANG (Berkompeten, berlandaskan Iman, dan bertanggung jawab)",
   mission: [
     "Mengedepankan iman dan takwa serta tidak lupa menerapkan sopan santun dan etika",
-    "Mewujudkan MPK sebagai organisasi teladan yang progresif terhadap perkembangan",
+    "Mewujudkan MPK sebagai organisasi teladan yang progresif",
     "Mendengarkan, menyaring, dan mengevaluasi aspirasi dari seluruh warga sekolah",
     "Mengembangkan potensi siswa siswi melalui program yang efektif dan menarik,",
   ],
