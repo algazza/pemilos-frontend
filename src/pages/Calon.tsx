@@ -28,7 +28,7 @@ const CalonPage = () => {
 
   return (
     <div className="flex justify-center items-center text-xs md:text-sm">
-      <Link to='/' className="absolute top-8 left-8 rounded-full bg-white p-2">
+      <Link to='/' className="absolute top-8 left-4 rounded-full bg-white p-2">
         <ChevronLeft className="text-[#648f9b]"/>
       </Link>
       <div className="w-full max-w-[1440px] flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-16">
