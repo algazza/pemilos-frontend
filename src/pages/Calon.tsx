@@ -42,7 +42,7 @@ const CalonPage = () => {
                 {data?.quote}
               </p>
             )}
-            <h1 className="text-4xl md:text-5xl paslon-name font-extrabold italic p-1 text-center">
+            <h1 className="text-4xl md:text-5xl paslon-name font-extrabold p-2 text-center">
               {data.name}
             </h1>
             <motion.div

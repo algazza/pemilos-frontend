@@ -28,8 +28,7 @@ const Home = () => {
           <p className="max-w-[400px] lg:max-w-[600px]">
             Ayo, jangan lewatkan kesempatan ini untuk berkontribusi. Pilihanmu
             adalah langkah awal menuju masa depan yang lebih baik untuk SMK
-            Negri 8 Semarang. Bijaklah dalam memilih untuk menciptakan perubahan
-            yang berarti
+            Negri 8 Semarang. Cek visi misi mereka
           </p>
         </div>
       </section>
@@ -47,7 +46,7 @@ const Home = () => {
                   to={`/${orgz}/${calon.id}`}
                   className="w-full px-4 pt-3 rounded-[20px] bg-gradient-to-b from-[#232741] to-[#161A20] lg:w-[210px]"
                 >
-                  <h2 className="text-2xl font-semibold bg-gradient-to-r to-[#648f9b] from-[#92D1E1] bg-clip-text text-transparent">
+                  <h2 className="text-xl md:text-2xl font-semibold bg-gradient-to-r to-[#648f9b] from-[#92D1E1] bg-clip-text text-transparent">
                     {calon.name}
                   </h2>
                   <img src={calon.img} alt={calon.name} className="w-full" />
@@ -58,6 +57,7 @@ const Home = () => {
         ))}
       </section>
     </>
+    
   );
 };
 
