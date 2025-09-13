@@ -105,7 +105,7 @@ export const MPK02Details: DetailsType = {
     "Menjadikan organisasi MPK sebagai wadah untuk menampung dan melaksanakan aspirasi serta inspirasi, dengan memegang teguh nilai BINTANG (Berkompeten, berlandaskan Iman, dan bertanggung jawab)",
   mission: [
     "Mengedepankan iman dan takwa serta tidak lupa menerapkan sopan santun dan etika",
-    "Mewujudkan MPK sebagai organisasi teladan yang progresif",
+    "Mewujudkan MPK sebagai organisasi teladan dan progresif",
     "Mendengarkan, menyaring, dan mengevaluasi aspirasi dari seluruh warga sekolah",
     "Mengembangkan potensi siswa siswi melalui program yang efektif dan menarik,",
   ],
@@ -212,9 +212,9 @@ export const OSIS03Details: DetailsType = {
   programs: [
     "Mengadakan evaluasi osis kurang lebih 2 bulan sekali guna memastikan bahwa program kerja berjalan dengan baik dan mengevaluasi tentang kedisiplinan, bertanggungjawab, dan perilaku teladan",
     "Penggalangan donasi pakaian layak pakai untuk masyarakat yang membutuhkan",
-    "Pengelolaan sampah menjadi barang bermanfaat dan mengoptimalkan platform media sosial untuk melakukan kampanye kepedulian lingkungan",
-    "Memanfaatkan media sosial guna membagikan konten edukatif, inspiratif, dan motivasi bagi Siswa-siswi, dan Menjadikan Sarana Aspirasi siswa siswi SMKN 8 semarang",
-    "Mading kreatif, Menjadi wadah siswa menyalurkan informasi, ide, dan kreativitas",
+    "Pengelolaan sampah plastik menjadi barang yang bermanfaat dan mengoptimalkan platform media sosial untuk melakukan kampanye kepedulian lingkungan",
+    "Memanfaatkan media sosial guna membagikan konten edukatif, inspiratif, dan memotivasi Siswa-siswi SMKN 8 Semarang, dan Menjadikan Sarana Aspirasi siswa siswi SMKN 8 semarang",
+    "Mading kreatif, Menjadi wadah bagi Siswa-siswi SMKN 8 Semarang untuk menyalurkan informasi, ide, dan kreativitas",
     "Study Banding untuk Menambah wawasan dan pengalaman baru melalui pertukaran ide organisasi dengan sekolah lain",
   ],
 };
