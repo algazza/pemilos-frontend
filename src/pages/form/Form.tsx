@@ -1,0 +1,67 @@
+import MpkCard from "@/components/mpkCard"
+import OsisCard from "@/components/osisCard"
+import axios from "axios"
+import { useEffect, useState } from "react"
+
+const Form = () => {
+    const [osisValue, setOsisValue] = useState<any>(null) // isinya id, buat styling sama fetch
+    const [mpkValue, setMpkValue] = useState<any>(null) // isinya id, buat styling sama fetch
+    const [filled, setFilled] = useState<boolean | null>(null)
+
+    const osisVoteHandler = (id: any): void => {
+        setOsisValue(id)
+    }
+
+    const mpkVoteHandler = (id: any): void => {
+        setMpkValue(id)
+    }
+
+    const vote = async () => {
+        if(!osisValue || !mpkValue) {setFilled(false); return}
+        try {
+            const res = await axios.post('', {})
+            console.log(res)
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(() => setFilled(null), [osisValue, mpkValue])
+
+    return (
+        <div className="bg-[linear-gradient(336deg,_#46626A_-36.08%,_#242633_83.86%)] w-screen min-h-screen font-[Inter] text-white flex justify-center">
+            <div className="w-150 py-5 px-5 flex flex-col gap-10">
+                <div>
+                    <div className="text-center">
+                        <p className="font-bold text-5xl bg-[linear-gradient(224deg,_#82B9C8_-14.26%,_#648F9A_140.15%)] bg-clip-text text-transparent">Vote</p>
+                        <p className="font-medium text-md tracking-wider">Pilih Kandidatmu</p>
+                    </div>
+                </div>
+                <div className="flex flex-col gap-10">
+                    <div className="flex flex-col gap-2">
+                        <div className="font-bold text-3xl bg-[linear-gradient(224deg,_#82B9C8_-14.26%,_#648F9A_140.15%)] bg-clip-text text-transparent">MPK</div>
+                        <div className="grid grid-cols-2 gap-5 w-full">
+                            <MpkCard id={"Alden F. H."} name="Alden F. H." img="Alden-1-aF0LkwjD.png" mpkVoteHandler={mpkVoteHandler} mpkValue={mpkValue} />
+                            <MpkCard id={"Seva A. P."} name="Seva A. P." img="Seva-2-CaMTsY6Q.png" mpkVoteHandler={mpkVoteHandler} mpkValue={mpkValue} />
+                            <MpkCard id={"Attaya S. A."} name="Attaya S. A." img="Attaya-3-B4QiY6bf.png" mpkVoteHandler={mpkVoteHandler} mpkValue={mpkValue} />
+                        </div>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                        <div className="font-bold text-3xl bg-[linear-gradient(224deg,_#82B9C8_-14.26%,_#648F9A_140.15%)] bg-clip-text text-transparent">OSIS</div>
+                        <div className="grid grid-cols-2 gap-5 w-full">
+                            <OsisCard id={"Rafif F. P."} name="Rafif F. P." img="Rafif-1-cUHUsNgs.png" osisVoteHandler={osisVoteHandler} osisValue={osisValue} />
+                            <OsisCard id={"Zahra R. M."} name="Zahra R. M." img="Zahra-2-DLpGzRhv.png" osisVoteHandler={osisVoteHandler} osisValue={osisValue} />
+                            <OsisCard id={"Laily A. A."} name="Laily A. A." img="Laily-3-B7kQfHLV.png" osisVoteHandler={osisVoteHandler} osisValue={osisValue} />
+                        </div>
+                    </div>
+                </div>
+                <div className="flex flex-col gap-1">
+                    <p className={`${filled === false ? "" : "hidden "}text-[#dee2fa] px-2`}><span className="text-red-400">{"[ ! ]"}</span> Pilih kandidat terlebih dahulu</p>
+                    <button onClick={vote} className="bg-[linear-gradient(180deg,_#AFB3D0_0%,_#808080_134%)] w-full text-black h-12 font-bold text-xl rounded-lg transition transform ease-in active:scale-99">Kirim</button>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default Form
