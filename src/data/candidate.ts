@@ -181,14 +181,14 @@ export const OSIS02Details: DetailsType = {
   mission: [
     "Menyediakan wadah bagi siswa siswi SMK Negeri 8 Semarang untuk memberi inpirasi dan edukasi melalui konten kreatif di media sosial (Snapan Talk)",
     "Menumbuhkan kepedulian sosial dan kesadaran lingkungan melalui kegiatan yang kreatif, edukatif, serta ramah lingkungan (Ecocraft)",
-    "Mengembangkan program kerja OSIS sebelumnya, seperti studi banding dan dukungan penuh terhadap proker tiap sekbid, agar tercipta kesinambungan organisasi",
+    "Mengembangkan program kerja OSIS sebelumnya, agar tercipta kesinambungan organisasi",
     "Menjadi fasilitator dalam membangun perilaku positif di sekolah, baik dalam aspek akademik maupun non-akademik",
   ],
 
   programs: [
     "<span className='font-bold'>Snapan Talk</span> adalah program kerja yang akan menayangkan konten dengan memanfaatkan platform media sosial seperti IG dan TikTok. Dengan mengundang siswa siswi berprestasi di bidang akademik maupun non-akademik. Snapan Talk juga akan membahas topik seputar anak sekolah atau remaja yang pastinya menarik, menginspirasi, dan mengudakasi pada setiap episode nya",
     "<span className='font-bold'>EcoCraft (Karya Ramah Lingkungan)</span> adalah kegiatan membuat kerajinan tangan dengan memanfaatkan barang bekas yang dapat diolah atau di daur ulang, agar nantinya dapat digunakan kembali menjadi barang yang lebih bermanfaat dan memiliki nilai jual",
-    "Melanjutkan program kerja yang sebelumnya sudah dibawa oleh ketua sebelumnya, yaitu Studi Banding & Mendukung Proker Setiap Sekbid",
+    "Melanjutkan program kerja yang sudah ada dan sudah berjalan pada Angkatan sebelumnya",
   ],
 };
 
