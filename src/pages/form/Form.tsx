@@ -23,6 +23,7 @@ const Form = () => {
     }
 
     const vote = async () => {
+        if(!localStorage.getItem("Authorization")) window.location.href = "/"
         if(!osisValue || !mpkValue) {setFilled(false); setConfirmation(false); return}
         try {
             setIsSent(true)
@@ -31,6 +32,9 @@ const Form = () => {
         } catch(err) {
             console.log(err)
         }
+
+        localStorage.removeItem("Authorization")
+        window.location.href = "/login"
     }
 
     useEffect(() => setFilled(null), [osisValue, mpkValue])
