@@ -2,14 +2,10 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Error from "./components/Error";
 import adminRoute from "./routes/adminRoute";
 import userRoute from "./routes/userRoute";
-import loginRoute from "./routes/loginRoute";
-import formRoute from "./routes/formRoute";
 
 const router = createBrowserRouter([
   userRoute,
   adminRoute,
-  loginRoute,
-  formRoute,
   { path: "*", element: <Error /> },
 ]);
 

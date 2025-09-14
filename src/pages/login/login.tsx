@@ -32,11 +32,11 @@ const Login = () => {
                         <div className="flex flex-col gap-3">
                             <div className="flex flex-col items-start gap-1">
                                 <label htmlFor="username">Username</label>
-                                <input ref={usernameRef} type="text" name="username" id="username" className="w-full h-9 border-1 rounded-sm bg-[#0000000a]"/>
+                                <input ref={usernameRef} type="text" name="username" id="username" className="w-full h-9 border-1 rounded-sm bg-[#0000000a] px-2"/>
                             </div>
                             <div className="flex flex-col items-start gap-1">
                                 <label htmlFor="username">Token</label>
-                                <input ref={tokenRef} type="password" name="password" id="password" className="w-full h-9 border-1 rounded-sm bg-[#0000000a]"/>
+                                <input ref={tokenRef} type="password" name="password" id="password" className="w-full h-9 border-1 rounded-sm bg-[#0000000a] px-2"/>
                             </div>
                         </div>
                     </div>
