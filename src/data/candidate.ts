@@ -28,7 +28,7 @@ import Laily from "@/assets/Caketos 3/Laily-3.png";
 import Laily1 from "@/assets/Caketos 3/Laily-osis-1.png";
 import Laily2 from "@/assets/Caketos 3/Laily-osis-2.png";
 import Laily3 from "@/assets/Caketos 3/Laily-osis-3.png";
-import type { DetailsType } from "@/schema/details.schema";
+import type { DetailsType } from "@/schemas/details.schema";
 
 export const candidateDisplay = {
   MPK: [
