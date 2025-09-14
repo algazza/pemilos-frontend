@@ -10,6 +10,7 @@ const Form = () => {
     const [filled, setFilled] = useState<boolean | null>(null)
     const [currentFill, setCurrentFill] = useState<"OSIS" | "MPK" | null>(null) // dynamic styling
     const [confirmation, setConfirmation] = useState<boolean>(false)
+    const [isSent, setIsSent] = useState<boolean>(false)
 
     const osisVoteHandler = (id: any): void => {
         setOsisValue(id)
@@ -24,6 +25,7 @@ const Form = () => {
     const vote = async () => {
         if(!osisValue || !mpkValue) {setFilled(false); setConfirmation(false); return}
         try {
+            setIsSent(true)
             const res = await axios.post('', {})
             console.log(res)
         } catch(err) {
@@ -39,7 +41,7 @@ const Form = () => {
         <div className="relative w-screen min-h-screen font-[Inter] text-white flex justify-center overflow-x-hidden">
             <div className={`bg-[linear-gradient(336deg,_#46626A_-36.08%,_#242633_83.86%)] relative w-screen min-h-screen font-[Inter] text-white flex justify-center`}>
                 <span className={`fixed inset-0 z-9 transition-opacity duration-500 ease-in-out backdrop-blur-md ${confirmation ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-                    <Confirmation vote={vote} setConfirmation={setConfirmation} />
+                    <Confirmation vote={vote} setConfirmation={setConfirmation} isSent={isSent} />
                 </span>
                 <div className="w-150 lg:w-240 py-5 px-5 flex flex-col gap-10 z-1">
                     <div>
@@ -68,7 +70,7 @@ const Form = () => {
                     </div>
                     <div className="flex flex-col gap-1">
                         <p className={`${filled === false ? "" : "hidden "}text-[#dee2fa] px-2`}><span className="text-red-400">{"[ ! ]"}</span> Pilih kandidat terlebih dahulu</p>
-                        <button onClick={() => {setConfirmation(true)}} className="bg-[linear-gradient(180deg,_#AFB3D0_0%,_#808080_134%)] w-full text-black h-12 font-bold text-xl rounded-lg transition transform ease-in active:scale-99">Kirim</button>
+                        <button disabled={!osisValue || !mpkValue} onClick={() => { setConfirmation(true) }}className={`w-full bg-[linear-gradient(180deg,_#AFB3D0_0%,_#808080_134%)] text-black h-12 font-bold text-xl rounded-lg transition transform ease-in active:scale-99 ${!osisValue || !mpkValue ? "opacity-25" : "opacity-100"}`}>Kirim</button>
                     </div>
                 </div>
                 <div className={`absolute w-50 h-full bg-[linear-gradient(270deg,_rgba(0,0,0,0.00)_30%,_#AA5D5D_700.11%)] left-0 transition transform ease-out duration-500 ${currentFill === "MPK" ? "opacity-100" : "opacity-0"}`}></div>
