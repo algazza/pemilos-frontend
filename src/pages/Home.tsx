@@ -6,19 +6,21 @@ import { Link, useParams } from "react-router-dom";
 import { detailsMap } from "@/routes/userRoute";
 import Error from "@/components/Error";
 import { ChevronLeft } from "lucide-react";
-import { candidateDisplay } from "@/data/candidate"; 
+import { candidateDisplay } from "@/data/candidate";
 
 const Home = () => {
   const { orgz, number } = useParams<{ orgz: string; number: string }>();
-  const [orgType, setOrgType] = useState<"OSIS" | "MPK">(orgz === "OSIS" ? "OSIS" : "MPK");
+  const [orgType, setOrgType] = useState<"OSIS" | "MPK">(
+    orgz === "OSIS" ? "OSIS" : "MPK"
+  );
   const [candidateIdx, setCandidateIdx] = useState(
-    Math.max(0, (parseInt(number || "1", 10) - 1))
+    Math.max(0, parseInt(number || "1", 10) - 1)
   );
   const candidates = candidateDisplay[orgType];
 
   useEffect(() => {
     setOrgType(orgz === "OSIS" ? "OSIS" : "MPK");
-    setCandidateIdx(Math.max(0, (parseInt(number || "1", 10) - 1)));
+    setCandidateIdx(Math.max(0, parseInt(number || "1", 10) - 1));
   }, [orgz, number]);
 
   const handlePrev = () => {
@@ -59,14 +61,15 @@ const Home = () => {
 
   return (
     <div className="bg-[linear-gradient(336deg,_#46626A_-36.08%,_#242633_83.86%)] w-screen min-h-screen p-[30px] font-[Inter] text-white flex justify-center items-center text-xs md:text-sm">
-      
-    <AnimatePresence mode="wait">
-        <motion.div key={candidateIdx}
-        initial={{ opacity: 0 }} 
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ type: 'spring', mass: 1, stiffness: 100, damping: 13 }} 
-        className="w-full max-w-[1440px] flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-16">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={candidateIdx}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ type: "spring", mass: 1, stiffness: 100, damping: 13 }}
+          className="w-full max-w-[1440px] flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-16"
+        >
           <div className="flex flex-col items-center ">
             <h2 className="text-4xl font-semibold bg-gradient-to-r to-[#648f9b] from-[#92D1E1] bg-clip-text text-transparent">
               {data.organization}
@@ -261,16 +264,19 @@ const Home = () => {
                 onClick={handleNext}
               >
                 <p>Previous candidate</p>
-                <ChevronLeft size={24} style={{ transform: "rotate(180deg)" }} />
-
+                <ChevronLeft
+                  size={24}
+                  style={{ transform: "rotate(180deg)" }}
+                />
               </button>
             </div>
             <Link
-              to="/"
-              className="bg-[#2A303D] p-2 text-lg text-center font-bold rounded-xl shadow-lg w-full max-w-96"
+              to="/form"
+              className="bg-[#2A303D] border border-white py-2 px-8 text-lg text-center font-bold rounded-xl shadow-lg md:w-full max-w-96 max-md:fixed max-md:bottom-0 max-md:m-4"
             >
               <p>Pilih Kandidat</p>
             </Link>
+            <div className="max-md: max-md:bg-[#46626A]"></div>
           </div>
         </motion.div>
       </AnimatePresence>
