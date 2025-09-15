@@ -4,6 +4,7 @@ import MainLayout from "@/layouts/MainLayout";
 import authLoader from "@/loader/auth";
 import Form from "@/pages/form/Form";
 import Home from "@/pages/Home";
+import Login from "@/pages/login/login";
 
 export const detailsMap = {
   "MPK-1": MPK01Details,
