@@ -1,10 +1,14 @@
 import Confirmation from "@/components/FormConfirmation"
 import MpkCard from "@/components/mpkCard"
 import OsisCard from "@/components/OsisCard"
+import { apiUrl } from "@/lib/api"
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { useLoaderData } from "react-router-dom"
 
 const Form = () => {
+    const data = useLoaderData()
+
     const [osisValue, setOsisValue] = useState<any>(null) // isinya id, buat styling sama fetch
     const [mpkValue, setMpkValue] = useState<any>(null) // isinya id, buat styling sama fetch
     const [filled, setFilled] = useState<boolean | null>(null)
@@ -23,23 +27,38 @@ const Form = () => {
     }
 
     const vote = async () => {
+        console.log(`${apiUrl}/vote`)
+        console.log({
+                "osis": osisValue,
+                "mpk": mpkValue,
+                "Authorization": localStorage.getItem("Authorization")
+        })
+
         if(!localStorage.getItem("Authorization")) window.location.href = "/"
         if(!osisValue || !mpkValue) {setFilled(false); setConfirmation(false); return}
         try {
             setIsSent(true)
-            const res = await axios.post('', {})
+            const res = await axios.post(`${apiUrl}/vote`, {
+                "osis": osisValue,
+                "mpk": mpkValue
+            }, {
+                headers: {
+                    "ngrok-skip-browser-warning": "true",
+                    Authorization: `${localStorage.getItem("Authorization")}`
+                }
+            })
             console.log(res)
         } catch(err) {
             console.log(err)
         }
 
-        localStorage.removeItem("Authorization")
-        window.location.href = "/login"
+        // localStorage.removeItem("Authorization")
+        // window.location.href = "/login"
     }
 
     useEffect(() => setFilled(null), [osisValue, mpkValue])
 
-    // color variable
+
 
     return (
         <div className="relative w-screen min-h-screen font-[Inter] text-white flex justify-center overflow-x-hidden">
@@ -58,18 +77,29 @@ const Form = () => {
                         <div className="flex flex-col gap-2">
                             <div className="font-bold text-3xl bg-[linear-gradient(224deg,_#E58C8C_-14.26%,_#A47272_140.15%)] bg-clip-text text-transparent">MPK</div>
                             <div className="grid grid-cols-2 gap-5 w-full">
-                                <MpkCard id={"Alden F. H."} name="Alden F. H." img="Alden-1-aF0LkwjD.png" mpkVoteHandler={mpkVoteHandler} mpkValue={mpkValue} />
-                                <MpkCard id={"Seva A. P."} name="Seva A. P." img="Seva-2-CaMTsY6Q.png" mpkVoteHandler={mpkVoteHandler} mpkValue={mpkValue} />
-                                <MpkCard id={"Attaya S. A."} name="Attaya S. A." img="Attaya-3-B4QiY6bf.png" mpkVoteHandler={mpkVoteHandler} mpkValue={mpkValue} />
+                            {data?.[0]?.mpkData?.map((candidate: any) => (
+                                <MpkCard
+                                    id={candidate._id}
+                                    name={candidate.name}
+                                    number={candidate.number}
+                                    mpkVoteHandler={mpkVoteHandler}
+                                    mpkValue={mpkValue}
+                                />
+                            ))}
                             </div>
                         </div>
                         <div className="flex flex-col gap-2">
                             <div className="font-bold text-3xl bg-[linear-gradient(224deg,_#82B9C8_-14.26%,_#648F9A_140.15%)] bg-clip-text text-transparent">OSIS</div>
-                            <div className="grid grid-cols-2 gap-5 w-full">
-                                <OsisCard id={"Rafif F. P."} name="Rafif F. P." img="Rafif-1-cUHUsNgs.png" osisVoteHandler={osisVoteHandler} osisValue={osisValue} />
-                                <OsisCard id={"Zahra R. M."} name="Zahra R. M." img="Zahra-2-DLpGzRhv.png" osisVoteHandler={osisVoteHandler} osisValue={osisValue} />
-                                <OsisCard id={"Laily A. A."} name="Laily A. A." img="Laily-3-B7kQfHLV.png" osisVoteHandler={osisVoteHandler} osisValue={osisValue} />
-                            </div>
+                                {data?.[0]?.osisData?.map((candidate: any) => (
+                                <OsisCard
+                                    key={candidate._id}
+                                    id={candidate._id}
+                                    name={candidate.name}
+                                    number={candidate.number}
+                                    osisVoteHandler={osisVoteHandler}
+                                    osisValue={osisValue}
+                                />
+                                ))}
                         </div>
                     </div>
                     <div className="flex flex-col gap-1">
