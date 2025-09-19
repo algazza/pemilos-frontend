@@ -9,7 +9,6 @@ import Vote from "@/pages/admin/Vote";
 const adminRoute = {
   path: "/admin",
   element: <AdminLayout />,
-  errorElement: <Error />,
   children: [
     { index: true, element: <Dashboard /> },
     { path: "user", element: <User /> },

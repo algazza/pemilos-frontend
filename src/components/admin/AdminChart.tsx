@@ -20,7 +20,13 @@ ChartJS.register(
   Legend
 );
 
-const AdminChart = ({titleChart, data}: {titleChart: string, data: LiveCountType[]}) => {
+const AdminChart = ({
+  titleChart,
+  data,
+}: {
+  titleChart: string;
+  data?: LiveCountType[];
+}) => {
   return (
     <Card className="flex-1">
       <CardContent>
@@ -36,10 +42,10 @@ const AdminChart = ({titleChart, data}: {titleChart: string, data: LiveCountType
           }}
           data={{
             labels: [titleChart],
-            datasets: data.map((res) => ({
+            datasets: (data ?? []).map((res) => ({
               label: res.name,
-              data: [res.count]
-            }))
+              data: [res.count],
+            })),
           }}
         />
       </CardContent>

@@ -6,5 +6,11 @@ export const LiveCountSchema = z.object({
   number: z.number(),
 });
 
+export const LiveCountArray= z.object({
+  osis: z.array(LiveCountSchema),
+  mpk: z.array(LiveCountSchema)
+})
+
 
 export type LiveCountType = z.infer<typeof LiveCountSchema>;
+export type CountArrayType = z.infer<typeof LiveCountArray>;
