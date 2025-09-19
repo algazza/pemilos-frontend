@@ -1,6 +1,7 @@
 import { useRef, useState } from "react"
 import axios from "axios"
 import usersDummy from "@/lib/dummy"
+import { apiUrl } from "@/lib/api"
 
 const Login = () => {
     const usernameRef = useRef<HTMLInputElement | null>(null) // username: string / null
@@ -10,29 +11,36 @@ const Login = () => {
     const [isCredentialWrong, setIsCredentialWrong] = useState<boolean>(false)
     const [isNotFilled, setIsNotFilled] = useState<boolean>(false)
 
+    const [username, setUsername] = useState<string>("")
+
     const removeWarning = () => {setIsCredentialWrong(false); setIsNotFilled(false)}
 
     const handleSubmit = async () => {
         if (!usernameRef.current?.value || !tokenRef.current?.value) {setIsNotFilled(true); return} // no value = break
 
-        usersDummy.forEach(user => {                                       // <-- Buat data dummy                                  
-            if(usernameRef.current?.value === user.username && tokenRef.current?.value === user.token) localStorage.setItem("Authorization", user.token)
-        });
+        // usersDummy.forEach(user => {                                       // <-- Buat data dummy                                  
+        //     if(usernameRef.current?.value === user.username && tokenRef.current?.value === user.token) localStorage.setItem("Authorization", user.token)
+        // });
 
-        const AuthToken = localStorage.getItem("Authorization")
-        if(!AuthToken) {setIsCredentialWrong(true); return}
+        // const AuthToken = localStorage.getItem("Authorization")
+        // if(!AuthToken) {setIsCredentialWrong(true); return}
 
-        window.location.href = "/"
-        // try {
-        //     const response = await axios.post("", { // <--- url           <--- buat real backend pake ini harusnya
-        //         username: usernameRef.current?.value,
-        //         token: tokenRef.current?.value
-        //     })
-
-        //     console.log(response.data) // <-- for further processing
-        // } catch(err) {
-        //     console.log(err)
-        // }
+        // window.location.href = "/"
+        try {
+            console.log({
+                username: usernameRef.current?.value,
+                password: `${tokenRef.current?.value}:${usernameRef.current?.value}`
+            })
+            const response = await axios.post(`${apiUrl}/auth/login`, { // <--- url           <--- buat real backend pake ini harusnya
+                username: usernameRef.current?.value,
+                password: `${tokenRef.current?.value}:${usernameRef.current?.value}`
+            })
+            console.log(response.data["token"])
+            localStorage.setItem("Authorization", response.data["token"])
+            if(response.data.status === "sucess") window.location.href = "/"
+        } catch(err) {
+            console.log(err)
+        }
     }
 
     return (
@@ -47,11 +55,19 @@ const Login = () => {
                         <div className="flex flex-col gap-3">
                             <div className="flex flex-col items-start gap-1">
                                 <label htmlFor="username">Username</label>
-                                <input onChange={removeWarning} ref={usernameRef} type="text" name="username" id="username" className="w-full h-9 border-1 rounded-sm bg-[#0000000a] px-2"/>
+                                <input onChange={(e) => {removeWarning(); setUsername(e.target.value)}} ref={usernameRef} type="text" name="username" id="username" className="w-full h-9 border-1 rounded-sm bg-[#0000000a] px-2"/>
                             </div>
-                            <div className="flex flex-col items-start gap-1">
-                                <label htmlFor="username">Token</label>
-                                <input onChange={removeWarning} ref={tokenRef} type="password" name="password" id="password" className="w-full h-9 border-1 rounded-sm bg-[#0000000a] px-2"/>
+                            <div className="flex flex-col justify-start items-start">
+                                <label htmlFor="password">Token</label>
+                                <div className="flex flex-row gap-1 justify-between items-center w-full">
+                                    <div>
+                                        <input onChange={removeWarning} ref={tokenRef} type="text" name="password" id="password" className="w-full h-9 border-1 rounded-sm bg-[#0000000a] px-2"/>
+                                    </div>
+                                    <p className="font-[Inter] font-bold text-xl">:</p>
+                                    <div>
+                                        <input readOnly onChange={removeWarning} value={username} type="text" name="password" id="password" className="text-[#ffffff] w-full h-9 border-1 rounded-sm bg-[#0000000a] px-2"/>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
