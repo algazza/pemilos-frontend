@@ -2,10 +2,22 @@ import AdminChart from "@/components/admin/AdminChart";
 import { useEffect, useState } from "react";
 import Pusher from "pusher-js";
 import type { CountArrayType } from "@/schemas/livecount.schema";
-
+import axios from "axios";
+import { apiUrl } from "@/lib/api";
 
 const Dashboard = () => {
   const [count, setCount] = useState<CountArrayType | null>(null);
+
+  const fetchData = async () => {
+    const res = await axios.get(`${apiUrl}/admin/count`, {
+      headers: {
+        "ngrok-skip-browser-warning": "true",
+        Authorization: `${localStorage.getItem("Authorization")}`,
+      },
+    });
+    setCount(res.data);
+  };
+
   useEffect(() => {
     Pusher.logToConsole = true;
 
@@ -15,18 +27,14 @@ const Dashboard = () => {
 
     var channel = pusher.subscribe("pemilose");
 
-    channel.bind("pemilolot", (data: CountArrayType) => {
-      setCount(data);
+    channel.bind("pemilolot", () => {
+      fetchData()
     });
 
-    return () =>{
-      channel.unbind_all(),
-      channel.unsubscribe(),
-      pusher.disconnect()
-    }
+    return () => {
+      channel.unbind_all(), channel.unsubscribe(), pusher.disconnect();
+    };
   }, []);
-
-  console.log(count)
 
   return (
     <section>
