@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { apiUrl } from "@/lib/api"
 import axios from "axios"
 import { useRef } from "react"
 
@@ -11,7 +12,7 @@ const GetToken = () => {
 
         if(value) {
             try {
-                const res = await axios.get(`https://d247a336af0e.ngrok-free.app/api/v1/admin/user?kelas=${encodeURIComponent(value)}`, {
+                const res = await axios.get(`${apiUrl}/admin/user?kelas=${encodeURIComponent(value)}`, {
                     headers: {"ngrok-skip-browser-warning": "true"}
                 })
                 if(res.data.status === "success") {
@@ -19,15 +20,15 @@ const GetToken = () => {
                     let filteredData: any = []
                     res.data.data.forEach((user: { name: any; class: any; username: any; password: any }) => {
                         filteredData.push({
-                            name: user.name,
-                            class: user.class,
-                            username: user.username,
-                            password: user.password
+                            NAMA: user.name,
+                            KELAS: user.class,
+                            USERNAME: user.username,
+                            TOKEN: user.password
                         })
                     });
                     
                     // generate csv from filteredData
-                    const headers = Object.keys(filteredData[0])
+                    const headers = ["NAMA", "KELAS", "USERNAME", "TOKEN"]
                     const csv = [
                         headers.join(","), 
                         ...filteredData.map((row: { [x: string]: any }) => headers.map(h => row[h]).join(","))
