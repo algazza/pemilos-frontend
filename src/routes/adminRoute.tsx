@@ -1,4 +1,3 @@
-import Error from "@/components/Error";
 import AdminLayout from "@/layouts/AdminLayout";
 import Dashboard from "@/pages/admin/Dashboard";
 import GetToken from "@/pages/admin/GetToken";

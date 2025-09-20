@@ -2,13 +2,7 @@ import { apiUrl } from "@/lib/api";
 import axios from "axios";
 import { redirect } from "react-router-dom";
 
-const authLoader = async () => {
-    // const token = localStorage.getItem("Authorization")    <----- Dummy
-    // if(!token) {
-    //     throw redirect("/login")
-    // } else {
-    //     return token
-    // }
+const userAuthLoader = async () => {
     try {
         console.log(`${apiUrl}/auth/me`)
         console.log(localStorage.getItem("Authorization"))
@@ -19,10 +13,17 @@ const authLoader = async () => {
             },
         })
         const data = (await res).data
-        console.log(data.data)
+        console.log(data.data.role)
+        if (data.data.role === "admin") {
+            window.location.href = "/admin"
+        } else if(data.data.role === "voter") {
+            return data.data
+        } else {
+            // window.location.href = "/login"
+        }
     } catch(err) {
-        console.log(err)
+        // throw redirect("/login")
     }
 }
 
-export default authLoader
+export default userAuthLoader
