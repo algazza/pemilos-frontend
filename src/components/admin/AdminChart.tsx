@@ -1,3 +1,4 @@
+import type { LiveCountType } from "@/schemas/livecount.schema";
 import { Card, CardContent } from "../ui/card";
 import {
   Chart as ChartJS,
@@ -19,7 +20,13 @@ ChartJS.register(
   Legend
 );
 
-const AdminChart = ({titleChart}: {titleChart: string}) => {
+const AdminChart = ({
+  titleChart,
+  data,
+}: {
+  titleChart: string;
+  data?: LiveCountType[];
+}) => {
   return (
     <Card className="flex-1">
       <CardContent>
@@ -35,16 +42,10 @@ const AdminChart = ({titleChart}: {titleChart: string}) => {
           }}
           data={{
             labels: [titleChart],
-            datasets: [
-              {
-                label: "Al",
-                data: [200],
-              },
-              {
-                label: "ol",
-                data: [100],
-              },
-            ],
+            datasets: (data ?? []).map((res) => ({
+              label: res.name,
+              data: [res.count],
+            })),
           }}
         />
       </CardContent>

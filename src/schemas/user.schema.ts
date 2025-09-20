@@ -2,10 +2,11 @@ import { z } from "zod";
 
 export const UserSchema = z.object({
   name: z.string(),
-  uuid: z.string().uuid(),
+  _id: z.string().uuid(),
   username: z.number(),
   role: z.enum(["Murid", "Guru", "Staff", 'Admin']),
-  kelas: z.string().optional()
+  class: z.string().optional(),
+  isVoted: z.boolean()
 });
 
 export type UserType = z.infer<typeof UserSchema>;
