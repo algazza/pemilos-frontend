@@ -11,8 +11,8 @@ const OsisCard = ({ id, name, number, osisVoteHandler, osisValue }: OsisCardProp
 
     function getImage() {
         if (number === 1) return "Rafif-1-cUHUsNgs.png"
-        if (number === 2) return "Seva-2-CaMTsY6Q.png"
-        if (number === 3) return "Zahra-2-DLpGzRhv.png"
+        if (number === 2) return "Zahra-2-DLpGzRhv.png"
+        if (number === 3) return "Laily-3-B7kQfHLV.png"
     }
 
     return (

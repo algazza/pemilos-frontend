@@ -19,10 +19,10 @@ const userAuthLoader = async () => {
         } else if(data.data.role === "voter") {
             return data.data
         } else {
-            // window.location.href = "/login"
+            window.location.href = "/login"
         }
     } catch(err) {
-        // throw redirect("/login")
+        throw redirect("/login")
     }
 }
 
