@@ -19,14 +19,21 @@ const GetToken = () => {
                     console.log(res.data)
                     let filteredData: any = []
                     res.data.data.forEach((user: { name: any; class: any; username: any; password: any }) => {
+                        const sanitize = (val: any) => {
+                            if (val == null) return ""
+                            return String(val).replace(/,/g, ".") // replace commas with dots
+                        }
+
                         filteredData.push({
-                            NAMA: user.name,
-                            KELAS: user.class,
-                            USERNAME: user.username,
-                            TOKEN: user.password
+                            NAMA: sanitize(user.name),
+                            KELAS: sanitize(user.class),
+                            USERNAME: sanitize(user.username),
+                            TOKEN: sanitize(user.password)
                         })
                     });
                     
+                    console.log(filteredData)
+
                     // generate csv from filteredData
                     const headers = ["NAMA", "KELAS", "USERNAME", "TOKEN"]
                     const csv = [
@@ -92,7 +99,7 @@ const GetToken = () => {
                 <option className="text-black" value="12 TJKT 1">12 TJKT 1</option>
                 <option className="text-black" value="12 TJKT 2">12 TJKT 2</option>
                 <option className="text-black" value="STAFF">STAFF</option>
-                <option className="text-black" value="TEACHER">TEACHER</option>
+                <option className="text-black" value="GURU">GURU</option>
                 <option className="text-black" value="ADMIN">ADMIN</option>
             </select>
             <Button type="submit" className="h-full rounded-sm">Download</Button>

@@ -1,5 +1,5 @@
 import { useRef, useState } from "react"
-import axios from "axios"
+import axios, { AxiosError, isAxiosError } from "axios"
 import usersDummy from "@/lib/dummy"
 import { apiUrl } from "@/lib/api"
 
@@ -10,22 +10,14 @@ const Login = () => {
     // buat warning text
     const [isCredentialWrong, setIsCredentialWrong] = useState<boolean>(false)
     const [isNotFilled, setIsNotFilled] = useState<boolean>(false)
+    const [isVoted, setIsVoted] = useState<boolean>(false)
 
     const [username, setUsername] = useState<string>("")
 
-    const removeWarning = () => {setIsCredentialWrong(false); setIsNotFilled(false)}
+    const removeWarning = () => {setIsCredentialWrong(false); setIsNotFilled(false); setIsVoted(false);}
 
     const handleSubmit = async () => {
         if (!usernameRef.current?.value || !tokenRef.current?.value) {setIsNotFilled(true); return} // no value = break
-
-        // usersDummy.forEach(user => {                                       // <-- Buat data dummy                                  
-        //     if(usernameRef.current?.value === user.username && tokenRef.current?.value === user.token) localStorage.setItem("Authorization", user.token)
-        // });
-
-        // const AuthToken = localStorage.getItem("Authorization")
-        // if(!AuthToken) {setIsCredentialWrong(true); return}
-
-        // window.location.href = "/"
         try {
             console.log({
                 username: usernameRef.current?.value,
@@ -39,7 +31,14 @@ const Login = () => {
             localStorage.setItem("Authorization", response.data["token"])
             if(response.data.status === "sucess") window.location.href = "/"
         } catch(err) {
-            console.log(err)
+            if(isAxiosError(err)) {
+                if(err.response?.status == 401) {
+                    setIsVoted(true)
+                }
+                if(err.response?.status == 400) {
+                    setIsCredentialWrong(true)
+                }
+            }
         }
     }
 
@@ -50,7 +49,7 @@ const Login = () => {
                     <div className="w-full h-full flex flex-col gap-5">
                         <div>
                             <p className="font-bold font text-2xl">Login</p>
-                            <p className="font-extralight text-[16px]">Mau vote? login dulu bos</p>
+                            <p className="font-extralight text-[16px]">silahkan login sebelum vote</p>
                         </div>
                         <div className="flex flex-col gap-3">
                             <div className="flex flex-col items-start gap-1">
@@ -74,6 +73,7 @@ const Login = () => {
                     <div>
                         {isCredentialWrong ? <p className="text-left font-light text-sm"><span>{"[ ! ] "}</span>Username atau token tidak valid!</p> : ""}
                         {isNotFilled ? <p className="text-left font-light text-sm"><span>{"[ ! ] "}</span>Username dan token wajib diisi!</p> : ""}
+                        {isVoted ? <p className="text-left font-light text-sm"><span>{"[ ! ] "}</span>Anda sudah vote!</p> : ""}
                         <button onClick={handleSubmit} className="w-full h-9 bg-white rounded-sm text-black font-semibold">Login</button>
                     </div>         
                 </div>

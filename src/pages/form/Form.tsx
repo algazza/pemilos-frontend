@@ -52,8 +52,8 @@ const Form = () => {
             console.log(err)
         }
 
-        // localStorage.removeItem("Authorization")
-        // window.location.href = "/login"
+        localStorage.removeItem("Authorization")
+        window.location.href = "/login"
     }
 
     useEffect(() => setFilled(null), [osisValue, mpkValue])
