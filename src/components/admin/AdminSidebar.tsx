@@ -1,4 +1,4 @@
-import { ClipboardList, Home, Settings, User, UsersRound } from "lucide-react";
+import { ClipboardList, Home, User } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -21,11 +21,6 @@ const items = [
     title: "User",
     url: "/admin/user",
     icon: User,
-  },
-  {
-    title: "Kandidat",
-    url: "/admin/candidate",
-    icon: UsersRound,
   },
   {
     title: "Suara",
