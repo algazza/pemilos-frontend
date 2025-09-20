@@ -4,63 +4,60 @@ import { DataTable } from "@/components/DataTable";
 import { Button } from "@/components/ui/button";
 import type { UserType } from "@/schemas/user.schema";
 import { useEffect, useState } from "react";
-
-import { fetchUsers } from "@/service/fetch";
+import type { PaginationState } from "@tanstack/react-table";
+import { apiUrl } from "@/lib/api";
+import axios from "axios";
 
 const User = () => {
   const [userData, setUserData] = useState<UserType[]>([]);
-  const [page, setPage] = useState(1);
-  const [studentCount, setStudentCount] = useState(0);
-  const [staffCount, setStaffCount] = useState(0);
+  const [page, setPage] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 40,
+  });
 
   useEffect(() => {
-    fetchUsers(page).then((data) => {
-      setUserData(data.users);
-    })
+    const fetchData = async () => {
+      const response = await axios.get(`${apiUrl}/admin/user`, {
+        params: { page },
+        headers: {
+          "ngrok-skip-browser-warning": "true",
+        },
+      });
+      setUserData(response.data.data);
+    };
+    fetchData()
   }, [page]);
 
-  useEffect(() => {
-    if (userData) {
-      const counts = userData.reduce(
-        (acc, user) => {
-          if (user.role === "Murid") acc.students += 1;
-          if (user.role === "Guru" || user.role === "Staff") acc.staff += 1;
-          return acc;
-        },
-        { students: 0, staff: 0 }
-      );
-      setStudentCount(counts.students);
-      setStaffCount(counts.staff);
-    }
-  }, [userData]);
-
-  const handleNextPage = () => {
-    setPage(page + 1);
-  };
-
-  const handlePrevPage = () => {
-    if (page > 1) setPage(page - 1);
-  };
+  const studentLength = userData.filter((user) => user.role === "Murid").length;
+  const staffLength = userData.filter((user) => user.role === "Guru" || user.role === 'Staff').length;
+  console.log(userData);
 
   return (
     <section>
       <div className="flex justify-between w-full">
         <h1 className="text-2xl font-bold">User</h1>
         <div className="flex gap-2">
-          <Button onClick={() => window.location.href = "/admin/gettoken"}>Download Token</Button>
+          <Button onClick={() => (window.location.href = "/admin/gettoken")}>
+            Download Token
+          </Button>
           <Button>Ekspor (Excel)</Button>
           <Button>Tambah (CSV)</Button>
-          {/* <AdminAddUser isNewUser={true}>
+          <AdminAddUser isNewUser={true}>
             <Button type="button">Tambah</Button>
-          </AdminAddUser> */}
+          </AdminAddUser>
         </div>
       </div>
 
       <div className="grid gap-2 mt-4">
         <div className="w-full px-2 py-2 rounded-xl border-2 text-center">
-          Jumlah Siswa: {studentCount}, Jumlah Guru/Karyawan: {staffCount}
+          Jumlah Siswa: {studentLength}, Jumlah Guru/Karyawan: {staffLength}
         </div>
-        <DataTable columns={columns} data={userData} />
+        <DataTable
+          columns={columns}
+          data={userData}
+          pagination={page}
+          onPaginationChange={setPage}
+        />
       </div>
     </section>
   );
