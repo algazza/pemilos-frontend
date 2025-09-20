@@ -23,7 +23,7 @@ const AdminAuthLoader = async () => {
             window.location.href = "/login"
         }
     } catch(err) {
-        // throw redirect("/login")
+        throw redirect("/login")
     }
 }
 

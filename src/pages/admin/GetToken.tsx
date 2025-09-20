@@ -10,26 +10,50 @@ const GetToken = () => {
   const submit = async (e: React.FormEvent) => {
     const value = selectRef.current?.value;
     e.preventDefault();
+        if(value) {
+            try {
+                const res = await axios.get(`${apiUrl}/admin/user?kelas=${encodeURIComponent(value)}`, {
+                    headers: {"ngrok-skip-browser-warning": "true"}
+                })
+                if(res.data.status === "success") {
+                    console.log(res.data)
+                    let filteredData: any = []
+                    res.data.data.forEach((user: { name: any; class: any; username: any; password: any }) => {
+                        const sanitize = (val: any) => {
+                            if (val == null) return ""
+                            return String(val).replace(/,/g, ".") // replace commas with dots
+                        }
 
-    if (value) {
-      try {
-        const res = await axios.get(
-          `${apiUrl}/admin/user?kelas=${encodeURIComponent(value)}`,
-          {
-            headers: { "ngrok-skip-browser-warning": "true" },
-          }
-        );
-        if (res.data.status === "success") {
-          console.log(res.data);
-          let filteredData: any = [];
-          res.data.data.forEach(
-            (user: { name: any; class: any; username: any; password: any }) => {
-              filteredData.push({
-                NAMA: user.name,
-                KELAS: user.class,
-                USERNAME: user.username,
-                TOKEN: user.password,
-              });
+                        filteredData.push({
+                            NAMA: sanitize(user.name),
+                            KELAS: sanitize(user.class),
+                            USERNAME: sanitize(user.username),
+                            TOKEN: sanitize(user.password)
+                        })
+                    });
+                    
+                    console.log(filteredData)
+
+                    // generate csv from filteredData
+                    const headers = ["NAMA", "KELAS", "USERNAME", "TOKEN"]
+                    const csv = [
+                        headers.join(","), 
+                        ...filteredData.map((row: { [x: string]: any }) => headers.map(h => row[h]).join(","))
+                    ].join("\n")
+
+                    // Prompt download
+                    const blob = new Blob([csv], { type: "text/csv" })
+                    const url = URL.createObjectURL(blob)
+                    const a = document.createElement("a")
+                    a.href = url
+                    a.download = `${value}.csv`
+                    document.body.appendChild(a)
+                    a.click()
+                    document.body.removeChild(a)
+                    URL.revokeObjectURL(url)
+                }
+            } catch (err) {
+                console.log(err)
             }
           );
 
