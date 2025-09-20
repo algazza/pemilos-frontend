@@ -22,13 +22,13 @@ export const columns: ColumnDef<UserType>[] = [
       return (
         <div className="grid gap-[0.3]">
           <h1 className="font-bold">{name.name}</h1>
-          <span className="text-xs">{name.kelas}</span>
+          <span className="text-xs">{name.class}</span>
         </div>
       );
     },
   },
   {
-    accessorKey: "uuid",
+    accessorKey: "_id",
     header: "UUID",
   },
   {
