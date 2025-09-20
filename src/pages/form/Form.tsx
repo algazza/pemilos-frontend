@@ -2,7 +2,7 @@ import Confirmation from "@/components/FormConfirmation"
 import MpkCard from "@/components/mpkCard"
 import OsisCard from "@/components/OsisCard"
 import { apiUrl } from "@/lib/api"
-import axios from "axios"
+import axios, { isAxiosError } from "axios"
 import { useEffect, useState } from "react"
 import { useLoaderData } from "react-router-dom"
 
@@ -15,6 +15,8 @@ const Form = () => {
     const [currentFill, setCurrentFill] = useState<"OSIS" | "MPK" | null>(null) // dynamic styling
     const [confirmation, setConfirmation] = useState<boolean>(false)
     const [isSent, setIsSent] = useState<boolean>(false)
+    const [isVoteNotAllowed, setIsVoteNotAllowed] = useState<boolean>(false)
+    const [isNotAuthorized, setIsNotAuthorized] = useState<boolean>(false)
 
     const osisVoteHandler = (id: any): void => {
         setOsisValue(id)
@@ -50,6 +52,11 @@ const Form = () => {
             console.log(res)
         } catch(err) {
             console.log(err)
+            if(isAxiosError(err)) {
+                if(err.response?.status === 401) setIsVoteNotAllowed(true)
+                if(err.response?.status === 400) setIsNotAuthorized(true)
+                setIsSent(false)
+            }
         }
 
         localStorage.removeItem("Authorization")
@@ -62,7 +69,7 @@ const Form = () => {
         <div className="relative w-screen min-h-screen font-[Inter] text-white flex justify-center overflow-x-hidden">
             <div className={`bg-[linear-gradient(336deg,_#46626A_-36.08%,_#242633_83.86%)] relative w-screen min-h-screen font-[Inter] text-white flex justify-center`}>
                 <span className={`fixed inset-0 z-9 transition-opacity duration-500 ease-in-out backdrop-blur-md ${confirmation ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-                    <Confirmation vote={vote} setConfirmation={setConfirmation} isSent={isSent} />
+                    <Confirmation vote={vote} setConfirmation={setConfirmation} isSent={isSent} isVoteNotAllowed={isVoteNotAllowed} isNotAuthorized={isNotAuthorized} />
                 </span>
                 <div className="w-150 lg:w-240 py-5 px-5 flex flex-col gap-10 z-1">
                     <div>
