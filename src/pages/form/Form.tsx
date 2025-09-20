@@ -88,6 +88,7 @@ const Form = () => {
                         </div>
                         <div className="flex flex-col gap-2">
                             <div className="font-bold text-3xl bg-[linear-gradient(224deg,_#82B9C8_-14.26%,_#648F9A_140.15%)] bg-clip-text text-transparent">OSIS</div>
+                            <div className="grid grid-cols-2 gap-5 w-full">
                                 {data?.[0]?.osisData?.map((candidate: any) => (
                                 <OsisCard
                                     key={candidate._id}
@@ -98,6 +99,7 @@ const Form = () => {
                                     osisValue={osisValue}
                                 />
                                 ))}
+                            </div>
                         </div>
                     </div>
                     <div className="flex flex-col gap-1">

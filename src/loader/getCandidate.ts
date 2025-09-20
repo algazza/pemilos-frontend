@@ -24,7 +24,7 @@ const getCandidateLoader = async () => {
         return filteredData
     } catch(err) {
         console.log(err)
-        throw redirect("/login")
+        // throw redirect("/login")
     }
 }
 
