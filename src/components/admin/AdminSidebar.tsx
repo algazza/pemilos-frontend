@@ -2,6 +2,7 @@ import { ClipboardList, Home, User } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarHeader,
@@ -10,6 +11,11 @@ import {
   SidebarMenuItem,
 } from "../ui/sidebar";
 import { Link } from "react-router-dom";
+import { Switch } from "../ui/switch";
+import { Label } from "../ui/label";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { apiUrl } from "@/lib/api";
 
 const items = [
   {
@@ -30,6 +36,39 @@ const items = [
 ];
 
 const AdminSidebar = () => {
+  const [checked, setChecked] = useState<boolean>(false);
+
+  const getToggle = async () => {
+    try {
+      const res = await axios.get(`${apiUrl}/admin/vote/status`, {
+        headers: {
+          "ngrok-skip-browser-warning": "true",
+        },
+      });
+      setChecked(res.data.data.vote_status);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  const handleToggle = async (newVal: boolean) => {
+    setChecked(newVal);
+    try {
+      await axios.put(
+        `${apiUrl}/admin/vote/status`,
+        { status: newVal },
+        { headers: { "ngrok-skip-browser-warning": "true" } }
+      );
+    } catch (error) {
+      console.log(error)
+      setChecked((prev) => !prev)
+    }
+  };
+
+  useEffect(() => {
+    getToggle();
+  }, []);
+
   return (
     <Sidebar variant="inset">
       <SidebarHeader>
@@ -64,6 +103,16 @@ const AdminSidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <div className="flex items-center space-x-2">
+              <Switch checked={checked} onCheckedChange={handleToggle}/>
+              <Label htmlFor="airplane-mode">Toggle Vote</Label>
+            </div>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   );
 };
