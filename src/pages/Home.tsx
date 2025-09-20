@@ -4,9 +4,11 @@ import { AnimatePresence, motion } from "motion/react";
 import type { DetailsType } from "@/schemas/details.schema";
 import { Link, useParams } from "react-router-dom";
 import { detailsMap } from "@/routes/userRoute";
-import Error from "@/components/Error";
 import { ChevronLeft } from "lucide-react";
 import { candidateDisplay } from "@/data/candidate";
+import { Button } from "@/components/ui/button";
+import { apiUrl } from "@/lib/api";
+import axios from "axios";
 
 const Home = () => {
   const { orgz, number } = useParams<{ orgz: string; number: string }>();
@@ -45,13 +47,24 @@ const Home = () => {
   const dataKey = `${orgType}-${candidateIdx + 1}`;
   const data: DetailsType = detailsMap[dataKey as keyof typeof detailsMap];
 
-  // if (!data) {
-  //   return <Error />;
-  // }
-
   const [indeximg, setIndeximg] = useState(0);
+  const [checked, setChecked] = useState<boolean>(false);
+
+  const getToggle = async () => {
+    try {
+      const res = await axios.get(`${apiUrl}/admin/vote/status`, {
+        headers: {
+          "ngrok-skip-browser-warning": "true",
+        },
+      });
+      setChecked(res.data.data.vote_status);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
+    getToggle();
     const interval = setInterval(() => {
       setIndeximg((prev) => (prev + 1) % data.images.length);
     }, 750);
@@ -251,7 +264,7 @@ const Home = () => {
                 ))}
               </div>
             </motion.div>
-            <div className="flex justify-between gap-2 items-center w-full max-w-96">
+            <div className="flex justify-between gap-2 items-center w-full max-w-96 max-lg:mb-12">
               <button
                 className="rounded-xl p-3 shadow hover:bg-gray-100/10 flex gap-4 items-center transition"
                 onClick={handlePrev}
@@ -270,13 +283,18 @@ const Home = () => {
                 />
               </button>
             </div>
-            <Link
-              to="/form"
-              className="bg-[#2A303D] border border-white py-2 px-8 text-lg text-center font-bold rounded-xl shadow-lg md:w-full max-w-96 max-md:fixed max-md:bottom-0 max-md:m-4"
-            >
-              <p>Pilih Kandidat</p>
-            </Link>
-            <div className="max-md: max-md:bg-[#46626A]"></div>
+            {checked ? (
+              <Link
+                to="/form"
+                className="bg-[#2A303D] border border-white py-2 px-8 text-lg text-center font-bold rounded-xl shadow-lg md:w-full max-w-96 max-md:fixed max-md:bottom-0 max-md:m-4"
+              >
+                <p>Pilih Kandidat</p>
+              </Link>
+            ) : (
+              <Button disabled={true} className="bg-[#2A303D] border border-white py-2 px-8 text-lg text-center font-bold rounded-xl shadow-lg md:w-full max-w-96 max-md:fixed max-md:bottom-0 max-md:m-4">
+                Mohon menunggu...
+              </Button>
+            )}
           </div>
         </motion.div>
       </AnimatePresence>

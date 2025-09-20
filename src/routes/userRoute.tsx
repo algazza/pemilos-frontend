@@ -1,4 +1,3 @@
-import Error from "@/components/Error";
 import { MPK01Details, MPK02Details, MPK03Details, OSIS01Details, OSIS02Details, OSIS03Details } from "@/data/candidate";
 import MainLayout from "@/layouts/MainLayout";
 import getCandidateLoader from "@/loader/getCandidate";
@@ -18,7 +17,6 @@ export const detailsMap = {
 const userRoute = {
   path: "/",
   element: <MainLayout />,
-  // errorElement: <Error />, 
   loader: userAuthLoader,
   children: [
     { index: true, element: <Home />, },
