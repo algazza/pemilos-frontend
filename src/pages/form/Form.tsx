@@ -58,8 +58,6 @@ const Form = () => {
 
     useEffect(() => setFilled(null), [osisValue, mpkValue])
 
-
-
     return (
         <div className="relative w-screen min-h-screen font-[Inter] text-white flex justify-center overflow-x-hidden">
             <div className={`bg-[linear-gradient(336deg,_#46626A_-36.08%,_#242633_83.86%)] relative w-screen min-h-screen font-[Inter] text-white flex justify-center`}>

@@ -1,79 +1,51 @@
-import { columns } from '@/components/admin/AdminVote';
-import { DataTable } from '@/components/DataTable';
-import type { VoteType } from '@/schemas/vote.schema';
-
-const userData: VoteType[] = [
-  {
-    name: "Fadhil Ghaza",
-    role: "Murid",
-    kelas: "XI DKV 1",
-    vote: true
-  },
-  {
-    name: "Nathan Ardiansyah",
-    role: "Guru",
-    vote: true
-  },
-  {
-    name: "Mahes Putra",
-    role: "Staff",
-    vote: false
-  },
-  {
-    name: "Wahit Santoso",
-    role: "Murid",
-    kelas: "X PS 1",
-    vote: true
-  },
-  {
-    name: "Siti Aisyah",
-    role: "Murid",
-    kelas: "XI TJKT 1",
-    vote: false
-  },
-  {
-    name: "Budi Prasetyo",
-    role: "Guru",
-    vote: false
-  },
-  {
-    name: "Rina Kurnia",
-    role: "Staff",
-    vote: true
-  },
-  {
-    name: "Andi Wijaya",
-    role: "Guru",
-    vote: true
-  },
-  {
-    name: "Dewi Sartika",
-    role: "Murid",
-    kelas: "XI PPLG 1",
-    vote: true
-  },
-  {
-    name: "Galih Saputra",
-    role: "Staff",
-    vote: false
-  },
-];
+import { columns } from "@/components/admin/AdminVote";
+import { DataTable } from "@/components/DataTable";
+import { apiUrl } from "@/lib/api";
+import type { UserType } from "@/schemas/user.schema";
+import type { PaginationState } from "@tanstack/react-table";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const Vote = () => {
-    const isNotVote = userData.filter(user => user.vote === false).length
+  const [userData, setUserData] = useState<UserType[]>([]);
+  const [page, setPage] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 40,
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(`${apiUrl}/admin/user`, {
+        params: { page },
+        headers: {
+          "ngrok-skip-browser-warning": "true",
+        },
+      });
+      setUserData(response.data.data);
+    };
+    fetchData()
+  }, [page]);
+
+
+  const isNotVote = userData.filter((user) => user.isVoted === false).length;
 
   return (
     <section>
-        <h1 className="text-2xl font-bold">User</h1>
+      <h1 className="text-2xl font-bold">Vote</h1>
 
       <div className="grid gap-2 mt-4">
         <div className="w-full px-2 py-2 rounded-xl border-2 text-center">
           Jumlah Belum Voting: {isNotVote}
         </div>
-        <DataTable columns={columns} data={userData} />
+        <DataTable
+          columns={columns}
+          data={userData}
+          pagination={page}
+          onPaginationChange={setPage}
+        />
       </div>
     </section>
   );
-}
+};
 
-export default Vote
+export default Vote;
