@@ -1,6 +1,6 @@
 import type { UserType } from "@/schemas/user.schema";
 import { type ColumnDef } from "@tanstack/react-table";
-import { Pen, Trash } from "lucide-react";
+import { Trash } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,

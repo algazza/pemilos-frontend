@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from "motion/react";
 import type { DetailsType } from "@/schemas/details.schema";
 import { Link, useParams } from "react-router-dom";
 import { detailsMap } from "@/routes/userRoute";
-import Error from "@/components/Error";
 import { ChevronLeft } from "lucide-react";
 import { candidateDisplay } from "@/data/candidate";
 
