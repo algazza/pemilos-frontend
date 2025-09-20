@@ -3,7 +3,6 @@ import {
   type ColumnFiltersState,
   flexRender,
   getCoreRowModel,
-  getFilteredRowModel,
   getPaginationRowModel,
   type OnChangeFn,
   type PaginationState,
@@ -21,12 +20,23 @@ import {
 import { Input } from "./ui/input";
 import { useState } from "react";
 import { Button } from "./ui/button";
+import { classOptions } from "@/lib/class";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   pagination: PaginationState;
   onPaginationChange: OnChangeFn<PaginationState>;
+  isLoading: boolean;
+  onSearchChange: (value: string) => void;
+  onFilter: (value: string) => void
 }
 
 export function DataTable<TData, TValue>({
@@ -34,15 +44,27 @@ export function DataTable<TData, TValue>({
   data,
   pagination,
   onPaginationChange,
+  isLoading,
+  onSearchChange,
+  onFilter
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [localSearch, setLocalSearch] = useState("");
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      onSearchChange(localSearch);
+    }
+  };
+
+  const handleSearchClick = () => {
+    onSearchChange(localSearch);
+  };
 
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     onColumnFiltersChange: setColumnFilters,
-    getFilteredRowModel: getFilteredRowModel(),
     pageCount: -1,
     manualPagination: true,
     getPaginationRowModel: getPaginationRowModel(),
@@ -55,14 +77,33 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="w-full">
-      <div className="py-4 max-w-sm">
-        <Input
-          placeholder="Search Name..."
-          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("name")?.setFilterValue(event.target.value)
-          }
-        />
+      <div className="py-4 ">
+        <div className="flex justify-between w-full">
+          <div className="flex gap-2 max-w-sm">
+            <Input
+              placeholder="Search Name..."
+              value={localSearch}
+              onChange={(e) => setLocalSearch(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+            <Button onClick={handleSearchClick}>Search</Button>
+          </div>
+          <Select onValueChange={(val) => onFilter(val === "All" ? "" : val)}> 
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select Class" />
+            </SelectTrigger>
+            <SelectContent className="dark">
+                <SelectItem value="All">
+                  All
+                </SelectItem>
+              {classOptions.map((clas) => (
+                <SelectItem key={clas} value={clas}>
+                  {clas}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       </div>
       <div className="overflow-hidden rounded-md border">
         <Table>
@@ -85,7 +126,16 @@ export function DataTable<TData, TValue>({
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {isLoading ? (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="text-center py-6"
+                >
+                  Loading...
+                </TableCell>
+              </TableRow>
+            ) : table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
@@ -120,7 +170,7 @@ export function DataTable<TData, TValue>({
           variant="outline"
           size="sm"
           onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
+          disabled={!table.getCanPreviousPage() || isLoading}
         >
           Previous
         </Button>
@@ -129,7 +179,7 @@ export function DataTable<TData, TValue>({
           variant="outline"
           size="sm"
           onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
+          disabled={!table.getCanNextPage() || isLoading}
         >
           Next
         </Button>

@@ -11,9 +11,10 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../ui/alert-dialog";
-import AdminAddUser from "./AdminAddUser";
+import axios from "axios";
+import { apiUrl } from "@/lib/api";
 
-export const columns: ColumnDef<UserType>[] = [
+export const columns = (refetch: () => void): ColumnDef<UserType>[] => [
   {
     accessorKey: "name",
     header: "Nama",
@@ -47,9 +48,9 @@ export const columns: ColumnDef<UserType>[] = [
               ? "bg-blue-500"
               : role === "Staff"
               ? "bg-orange-500"
-              : role === 'Guru' 
+              : role === "Guru"
               ? "bg-green-500"
-              : 'bg-red-500'
+              : "bg-red-500"
           }`}
         >
           {role}
@@ -59,15 +60,21 @@ export const columns: ColumnDef<UserType>[] = [
   },
   {
     id: "actions",
-    cell: ({row}) => {
-      const user = row.original
+    cell: ({ row }) => {
+      const user = row.original;
+
+      const deleteUser = async () => {
+        try {
+          await axios.delete(`${apiUrl}/admin/user/${user._id}`);
+          refetch();
+        } catch (error) {
+          console.error("Failed to reset user:", error);
+          throw error;
+        }
+      };
 
       return (
         <div className="flex gap-8">
-          <AdminAddUser isNewUser={false} user={user}>
-            <Pen className="size-4"/>
-          </AdminAddUser>
-
           <AlertDialog>
             <AlertDialogTrigger className="cursor-pointer">
               <Trash className="size-4" />
@@ -80,7 +87,12 @@ export const columns: ColumnDef<UserType>[] = [
               </AlertDialogHeader>
               <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction className="bg-red-500 text-white">Delete</AlertDialogAction>
+                <AlertDialogAction
+                  className="bg-red-500 text-white"
+                  onClick={() => deleteUser()}
+                >
+                  Delete
+                </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>

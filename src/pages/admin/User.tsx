@@ -3,7 +3,7 @@ import { columns } from "@/components/admin/AdminTabel";
 import { DataTable } from "@/components/DataTable";
 import { Button } from "@/components/ui/button";
 import type { UserType } from "@/schemas/user.schema";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { PaginationState } from "@tanstack/react-table";
 import { apiUrl } from "@/lib/api";
 import axios from "axios";
@@ -14,23 +14,40 @@ const User = () => {
     pageIndex: 0,
     pageSize: 40,
   });
+  const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get(`${apiUrl}/admin/user`, {
-        params: { page },
-        headers: {
-          "ngrok-skip-browser-warning": "true",
-        },
-      });
-      setUserData(response.data.data);
-    };
-    fetchData()
-  }, [page]);
+    setPage((prev) => ({ ...prev, pageIndex: 0 }));
+  }, [search, filter]);
 
-  const studentLength = userData.filter((user) => user.role === "Murid").length;
-  const staffLength = userData.filter((user) => user.role === "Guru" || user.role === 'Staff').length;
-  console.log(userData);
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(
+        `${apiUrl}/admin/user?name=${search}&kelas=${filter}&page=${
+          page.pageIndex + 1
+        }`,
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "true",
+          },
+        }
+      );
+      setUserData(response.data.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [page.pageIndex, search, filter]);
+
+  const memoizedColumns = useMemo(() => columns(fetchData), [fetchData]);
 
   return (
     <section>
@@ -42,21 +59,21 @@ const User = () => {
           </Button>
           <Button>Ekspor (Excel)</Button>
           <Button>Tambah (CSV)</Button>
-          <AdminAddUser isNewUser={true}>
+          <AdminAddUser refetch={fetchData} isNewUser={true}>
             <Button type="button">Tambah</Button>
           </AdminAddUser>
         </div>
       </div>
 
       <div className="grid gap-2 mt-4">
-        <div className="w-full px-2 py-2 rounded-xl border-2 text-center">
-          Jumlah Siswa: {studentLength}, Jumlah Guru/Karyawan: {staffLength}
-        </div>
         <DataTable
-          columns={columns}
+          columns={memoizedColumns}
           data={userData}
           pagination={page}
           onPaginationChange={setPage}
+          isLoading={loading}
+          onSearchChange={setSearch}
+          onFilter={setFilter}
         />
       </div>
     </section>
