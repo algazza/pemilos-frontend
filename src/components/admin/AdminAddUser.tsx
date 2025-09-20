@@ -38,11 +38,11 @@ const AdminAddUser = ({
             </div>
             <div className="grid gap-3">
               <Label htmlFor="">Kelas</Label>
-              <Input name="grade" defaultValue={user?.kelas} />
+              <Input name="grade" defaultValue={user?.class} />
             </div>
             <div className="grid gap-3">
               <Label htmlFor="">UUID</Label>
-              <Input name="uuid" defaultValue={user?.uuid} />
+              <Input name="uuid" defaultValue={user?._id} />
             </div>
             <div className="grid gap-3">
               <Label htmlFor="">Username</Label>

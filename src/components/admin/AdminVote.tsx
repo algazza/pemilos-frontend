@@ -1,7 +1,7 @@
-import type { VoteType } from "@/schemas/vote.schema";
+import type { UserType } from "@/schemas/user.schema";
 import { type ColumnDef } from "@tanstack/react-table";
 
-export const columns: ColumnDef<VoteType>[] = [
+export const columns: ColumnDef<UserType>[] = [
   {
     accessorKey: "name",
     header: "Nama",
@@ -10,7 +10,7 @@ export const columns: ColumnDef<VoteType>[] = [
       return (
         <div className="grid gap-[0.3]">
           <h1 className="font-bold">{name.name}</h1>
-          <span className="text-xs">{name.kelas}</span>
+          <span className="text-xs">{name.class}</span>
         </div>
       );
     },
@@ -41,7 +41,7 @@ export const columns: ColumnDef<VoteType>[] = [
     accessorKey: 'vote',
     header: 'Vote',
     cell: ({row}) => {
-      const vote = row.original.vote
+      const vote = row.original.isVoted
 
       return (
         <div className={`rounded-lg w-fit px-2 text-sm font-semibold ${
