@@ -53,14 +53,17 @@ const AdminAddUser = ({
       role: "voter",
     };
 
-    console.log(data)
-
     try {
-      await axios.post(`${apiUrl}/admin/user`, data);
+      await axios.post(`${apiUrl}/admin/user`, data, {
+        headers: {
+          "ngrok-skip-browser-warning": "true",
+          Authorization: `${localStorage.getItem("Authorization")}`,
+        },
+      });
       refetch();
-      toast("User Berhasil dibuat")
-      setOpen(false)
-    } catch(error) {
+      toast("User Berhasil dibuat");
+      setOpen(false);
+    } catch (error) {
       console.log(error);
     }
   };
@@ -80,10 +83,7 @@ const AdminAddUser = ({
             </div>
             <div className="grid gap-3">
               <Label htmlFor="">Username</Label>
-              <Input
-                id="username-1"
-                name="username"
-              />
+              <Input id="username-1" name="username" />
             </div>
             <div className="grid gap-3">
               <Label htmlFor="">Password</Label>

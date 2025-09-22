@@ -3,10 +3,8 @@ import axios from "axios";
 import { redirect } from "react-router-dom";
 
 const AdminAuthLoader = async () => {
-    console.log("adminLoader")
     try {
         console.log(`${apiUrl}/auth/me`)
-        console.log(localStorage.getItem("Authorization"))
         const res = axios.get(`${apiUrl}/auth/me`, {
             headers: {
                 "ngrok-skip-browser-warning": "true",

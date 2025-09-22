@@ -14,7 +14,6 @@ import { RefreshCcw } from "lucide-react";
 import axios from "axios";
 import { apiUrl } from "@/lib/api";
 
-
 export const columns = (refetch: () => void): ColumnDef<UserType>[] => [
   {
     accessorKey: "name",
@@ -36,15 +35,15 @@ export const columns = (refetch: () => void): ColumnDef<UserType>[] => [
       const role = row.original.role;
       return (
         <div
-        className={`rounded-lg w-fit px-2 text-sm font-semibold ${
-          role === "Murid"
-          ? "bg-blue-500"
-          : role === "Staff"
-          ? "bg-orange-500"
-          : role === "Guru"
-          ? "bg-green-500"
-          : "bg-red-500"
-        }`}
+          className={`rounded-lg w-fit px-2 text-sm font-semibold ${
+            role === "Murid"
+              ? "bg-blue-500"
+              : role === "Staff"
+              ? "bg-orange-500"
+              : role === "Guru"
+              ? "bg-green-500"
+              : "bg-red-500"
+          }`}
         >
           {role}
         </div>
@@ -56,12 +55,12 @@ export const columns = (refetch: () => void): ColumnDef<UserType>[] => [
     header: "Vote",
     cell: ({ row }) => {
       const vote = row.original.isVoted;
-      
+
       return (
         <div
-        className={`rounded-lg w-fit px-2 text-sm font-semibold ${
-          vote ? "bg-white text-black" : "border-2 border-white"
-        }`}
+          className={`rounded-lg w-fit px-2 text-sm font-semibold ${
+            vote ? "bg-white text-black" : "border-2 border-white"
+          }`}
         >
           {vote ? "Sudah" : "Belum"}
         </div>
@@ -72,10 +71,19 @@ export const columns = (refetch: () => void): ColumnDef<UserType>[] => [
     id: "actions",
     cell: ({ row }) => {
       const user = row.original;
-    
+
       const ResetData = async (username: string) => {
         try {
-          await axios.put(`${apiUrl}/admin/reset`, { username });
+          await axios.put(
+            `${apiUrl}/admin/reset`,
+            { username },
+            {
+              headers: {
+                "ngrok-skip-browser-warning": "true",
+                Authorization: `${localStorage.getItem("Authorization")}`,
+              },
+            }
+          );
           refetch();
         } catch (error) {
           console.error("Failed to reset user:", error);

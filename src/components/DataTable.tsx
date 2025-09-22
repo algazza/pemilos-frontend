@@ -36,7 +36,9 @@ interface DataTableProps<TData, TValue> {
   onPaginationChange: OnChangeFn<PaginationState>;
   isLoading: boolean;
   onSearchChange: (value: string) => void;
-  onFilter: (value: string) => void
+  onFilter: (value: string) => void;
+  isVote?: boolean;
+  onVoted?: (value: string) => void
 }
 
 export function DataTable<TData, TValue>({
@@ -46,7 +48,9 @@ export function DataTable<TData, TValue>({
   onPaginationChange,
   isLoading,
   onSearchChange,
-  onFilter
+  onFilter,
+  isVote = false,
+  onVoted,
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [localSearch, setLocalSearch] = useState("");
@@ -88,21 +92,34 @@ export function DataTable<TData, TValue>({
             />
             <Button onClick={handleSearchClick}>Search</Button>
           </div>
-          <Select onValueChange={(val) => onFilter(val === "All" ? "" : val)}> 
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select Class" />
-            </SelectTrigger>
-            <SelectContent className="dark">
-                <SelectItem value="All">
-                  All
-                </SelectItem>
-              {classOptions.map((clas) => (
-                <SelectItem key={clas} value={clas}>
-                  {clas}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <div className="flex gap-4">
+            <Select onValueChange={(val) => onFilter(val === "All" ? "" : val)}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Select Class" />
+              </SelectTrigger>
+              <SelectContent className="dark">
+                <SelectItem value="All">All</SelectItem>
+                {classOptions.map((clas) => (
+                  <SelectItem key={clas} value={clas}>
+                    {clas}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {isVote && (
+              <Select
+                onValueChange={(val) => onVoted?.(val === "All" ? "" : val)}
+              >
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Select voted" />
+                </SelectTrigger>
+                <SelectContent className="dark">
+                  <SelectItem value="All">All</SelectItem>
+                  <SelectItem value="true">True</SelectItem>
+                </SelectContent>
+              </Select>
+            )}
+          </div>
         </div>
       </div>
       <div className="overflow-hidden rounded-md border">

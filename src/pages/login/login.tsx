@@ -23,18 +23,16 @@ const Login = () => {
     if (!usernameRef.current?.value || !tokenRef.current?.value) {
       setIsNotFilled(true);
       return;
-    } // no value = break
+    }
     try {
       console.log({
         username: usernameRef.current?.value,
         password: `${tokenRef.current?.value}:${usernameRef.current?.value}`,
       });
       const response = await axios.post(`${apiUrl}/auth/login`, {
-        // <--- url           <--- buat real backend pake ini harusnya
         username: usernameRef.current?.value,
         password: `${tokenRef.current?.value}:${usernameRef.current?.value}`,
       });
-      console.log(response.data["token"]);
       localStorage.setItem("Authorization", response.data["token"]);
       if (response.data.status === "sucess") window.location.href = "/";
     } catch (err) {
