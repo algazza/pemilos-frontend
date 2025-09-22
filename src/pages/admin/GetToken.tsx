@@ -15,7 +15,10 @@ const GetToken = () => {
         const res = await axios.get(
           `${apiUrl}/admin/user?kelas=${encodeURIComponent(value)}`,
           {
-            headers: { "ngrok-skip-browser-warning": "true" },
+            headers: {
+              "ngrok-skip-browser-warning": "true",
+              Authorization: `${localStorage.getItem("Authorization")}`,
+            },
           }
         );
         if (res.data.status === "success") {
