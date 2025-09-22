@@ -65,7 +65,12 @@ export const columns = (refetch: () => void): ColumnDef<UserType>[] => [
 
       const deleteUser = async () => {
         try {
-          await axios.delete(`${apiUrl}/admin/user/${user._id}`);
+          await axios.delete(`${apiUrl}/admin/user/${user._id}`, {
+            headers: {
+              "ngrok-skip-browser-warning": "true",
+              Authorization: `${localStorage.getItem("Authorization")}`,
+            },
+          });
           refetch();
         } catch (error) {
           console.error("Failed to reset user:", error);
