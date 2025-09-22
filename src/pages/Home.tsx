@@ -55,6 +55,7 @@ const Home = () => {
       const res = await axios.get(`${apiUrl}/admin/vote/status`, {
         headers: {
           "ngrok-skip-browser-warning": "true",
+          Authorization: `${localStorage.getItem("Authorization")}`,
         },
       });
       setChecked(res.data.data.vote_status);
@@ -291,7 +292,10 @@ const Home = () => {
                 <p>Pilih Kandidat</p>
               </Link>
             ) : (
-              <Button disabled={true} className="bg-[#2A303D] border border-white py-2 px-8 text-lg text-center font-bold rounded-xl shadow-lg md:w-full max-w-96 max-md:fixed max-md:bottom-0 max-md:m-4">
+              <Button
+                disabled={true}
+                className="bg-[#2A303D] border border-white py-2 px-8 text-lg text-center font-bold rounded-xl shadow-lg md:w-full max-w-96 max-md:fixed max-md:bottom-0 max-md:m-4"
+              >
                 Mohon menunggu...
               </Button>
             )}

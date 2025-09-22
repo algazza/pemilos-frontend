@@ -44,6 +44,7 @@ const AdminSidebar = () => {
       const res = await axios.get(`${apiUrl}/admin/vote/status`, {
         headers: {
           "ngrok-skip-browser-warning": "true",
+          Authorization: `${localStorage.getItem("Authorization")}`,
         },
       });
       setChecked(res.data.data.vote_status);
@@ -62,7 +63,12 @@ const AdminSidebar = () => {
       await axios.put(
         `${apiUrl}/admin/vote/status`,
         { status: newVal },
-        { headers: { "ngrok-skip-browser-warning": "true" } }
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "true",
+            Authorization: `${localStorage.getItem("Authorization")}`,
+          },
+        }
       );
     } catch (error) {
       console.log(error);
@@ -119,7 +125,10 @@ const AdminSidebar = () => {
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton asChild className="mt-4">
-              <Button onClick={() => Logouthandle()} className="bg-red-500 text-white">
+              <Button
+                onClick={() => Logouthandle()}
+                className="bg-red-500 text-white"
+              >
                 <LogOut />
                 <span>Logout</span>
               </Button>

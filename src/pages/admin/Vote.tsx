@@ -26,6 +26,7 @@ const Vote = () => {
         {
           headers: {
             "ngrok-skip-browser-warning": "true",
+            Authorization: `${localStorage.getItem("Authorization")}`,
           },
         }
       );

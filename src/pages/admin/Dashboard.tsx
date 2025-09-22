@@ -12,6 +12,7 @@ const Dashboard = () => {
     const res = await axios.get(`${apiUrl}/admin/live/count`, {
       headers: {
         "ngrok-skip-browser-warning": "true",
+        Authorization: `${localStorage.getItem("Authorization")}`,
       },
     });
     setCount(res.data.data);
@@ -37,7 +38,7 @@ const Dashboard = () => {
     };
   }, []);
 
-  console.log(count)
+  console.log(count);
 
   return (
     <section>
