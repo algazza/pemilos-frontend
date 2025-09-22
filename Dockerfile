@@ -1,4 +1,4 @@
-FROM oven/bun:1
+FROM oven/bun:1 AS builder
 
 WORKDIR /app
 
@@ -8,6 +8,16 @@ RUN bun install
 
 COPY . .
 
+RUN bun run build
+
+FROM node:alpine AS production
+
+WORKDIR /app
+
+RUN npm install -g serve
+
+COPY --from=builder /app/dist ./dist
+
 EXPOSE 5173
 
-CMD [ "bun", "dev" ]
+CMD ["serve", "-s", "dist", "-l", "5173"]
