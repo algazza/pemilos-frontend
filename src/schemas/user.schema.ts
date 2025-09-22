@@ -11,3 +11,8 @@ export const UserSchema = z.object({
 });
 
 export type UserType = z.infer<typeof UserSchema>;
+
+export type IsVotedType = {
+  _id: boolean,
+  count: number
+}
