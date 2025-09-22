@@ -58,6 +58,10 @@ export const columns = (refetch: () => void): ColumnDef<UserType>[] => [
       );
     },
   },
+    {
+    accessorKey: "password",
+    header: "Password",
+  },
   {
     id: "actions",
     cell: ({ row }) => {

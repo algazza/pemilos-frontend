@@ -6,7 +6,8 @@ export const UserSchema = z.object({
   username: z.string(),
   role: z.enum(["Murid", "Guru", "Staff", 'Admin']),
   class: z.string().optional(),
-  isVoted: z.boolean()
+  isVoted: z.boolean(),
+  password: z.string()
 });
 
 export type UserType = z.infer<typeof UserSchema>;
