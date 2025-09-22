@@ -8,6 +8,7 @@ import { useLoaderData } from "react-router-dom"
 
 const Form = () => {
     const data = useLoaderData()
+    console.log(data)
 
     const [osisValue, setOsisValue] = useState<any>(null) // isinya id, buat styling sama fetch
     const [mpkValue, setMpkValue] = useState<any>(null) // isinya id, buat styling sama fetch

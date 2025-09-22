@@ -1,7 +1,5 @@
 import { useRef, useState } from "react";
-import axios, { isAxiosError } from "axios";
-import { apiUrl } from "@/lib/api";
-
+import usersDummy from "@/lib/dummy";
 const Login = () => {
   const usernameRef = useRef<HTMLInputElement | null>(null); // username: string / null
   const tokenRef = useRef<HTMLInputElement | null>(null); // token: number / null
@@ -24,29 +22,37 @@ const Login = () => {
       setIsNotFilled(true);
       return;
     } // no value = break
-    try {
-      console.log({
-        username: usernameRef.current?.value,
-        password: `${tokenRef.current?.value}:${usernameRef.current?.value}`,
-      });
-      const response = await axios.post(`${apiUrl}/auth/login`, {
-        // <--- url           <--- buat real backend pake ini harusnya
-        username: usernameRef.current?.value,
-        password: `${tokenRef.current?.value}:${usernameRef.current?.value}`,
-      });
-      console.log(response.data["token"]);
-      localStorage.setItem("Authorization", response.data["token"]);
-      if (response.data.status === "sucess") window.location.href = "/";
-    } catch (err) {
-      if (isAxiosError(err)) {
-        if (err.response?.status == 401) {
-          setIsVoted(true);
-        }
-        if (err.response?.status == 400) {
-          setIsCredentialWrong(true);
-        }
+    // try {
+    //   console.log({
+    //     username: usernameRef.current?.value,
+    //     password: `${tokenRef.current?.value}:${usernameRef.current?.value}`,
+    //   });
+    //   const response = await axios.post(`${apiUrl}/auth/login`, {
+    //     // <--- url           <--- buat real backend pake ini harusnya
+    //     username: usernameRef.current?.value,
+    //     password: `${tokenRef.current?.value}:${usernameRef.current?.value}`,
+    //   });
+    //   console.log(response.data["token"]);
+    //   localStorage.setItem("Authorization", response.data["token"]);
+    //   if (response.data.status === "sucess") window.location.href = "/";
+    // } catch (err) {
+    //   if (isAxiosError(err)) {
+    //     if (err.response?.status == 401) {
+    //       setIsVoted(true);
+    //     }
+    //     if (err.response?.status == 400) {
+    //       setIsCredentialWrong(true);
+    //     }
+    //   }
+    // }
+    usersDummy.forEach(user => {
+      console.log(user)
+      if(usernameRef.current?.value === user.username && tokenRef.current?.value) {
+        localStorage.setItem("Authorization", user.role)
+        window.location.href = "/"
       }
-    }
+    })
+    setIsCredentialWrong(true)
   };
 
   return (

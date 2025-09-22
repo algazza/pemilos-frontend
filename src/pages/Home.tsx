@@ -48,29 +48,29 @@ const Home = () => {
   const data: DetailsType = detailsMap[dataKey as keyof typeof detailsMap];
 
   const [indeximg, setIndeximg] = useState(0);
-  const [checked, setChecked] = useState<boolean>(false);
+  const [checked, setChecked] = useState<boolean>(true);
 
-  const getToggle = async () => {
-    try {
-      const res = await axios.get(`${apiUrl}/admin/vote/status`, {
-        headers: {
-          "ngrok-skip-browser-warning": "true",
-        },
-      });
-      setChecked(res.data.data.vote_status);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getToggle = async () => {
+  //   try {
+  //     const res = await axios.get(`${apiUrl}/admin/vote/status`, {
+  //       headers: {
+  //         "ngrok-skip-browser-warning": "true",
+  //       },
+  //     });
+  //     setChecked(res.data.data.vote_status);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    getToggle();
-    const interval = setInterval(() => {
-      setIndeximg((prev) => (prev + 1) % data.images.length);
-    }, 750);
+  // useEffect(() => {
+  //   getToggle();
+  //   const interval = setInterval(() => {
+  //     setIndeximg((prev) => (prev + 1) % data.images.length);
+  //   }, 750);
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <div className="bg-[linear-gradient(336deg,_#46626A_-36.08%,_#242633_83.86%)] w-screen min-h-screen p-[30px] font-[Inter] text-white flex justify-center items-center text-xs md:text-sm">
