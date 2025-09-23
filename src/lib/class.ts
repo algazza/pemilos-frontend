@@ -18,6 +18,6 @@ export const classOptions = [
   "12 TJKT 1", "12 TJKT 2",
 
   "STAFF",
-  "TEACHER",
+  "GURU",
   "ADMIN",
 ]

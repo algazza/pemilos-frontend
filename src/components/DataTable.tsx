@@ -38,7 +38,7 @@ interface DataTableProps<TData, TValue> {
   onSearchChange: (value: string) => void;
   onFilter: (value: string) => void;
   isVote?: boolean;
-  onVoted?: (value: string) => void
+  onVoted?: (value: string) => void;
 }
 
 export function DataTable<TData, TValue>({
@@ -93,7 +93,11 @@ export function DataTable<TData, TValue>({
             <Button onClick={handleSearchClick}>Search</Button>
           </div>
           <div className="flex gap-4">
-            <Select onValueChange={(val) => onFilter(val === "All" ? "" : val)}>
+            <Select
+              onValueChange={(val) =>
+                onFilter(val === "All" ? "" : val === "admin" ? "" : val)
+              }
+            >
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Select Class" />
               </SelectTrigger>

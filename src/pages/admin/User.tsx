@@ -17,6 +17,7 @@ const User = () => {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [filter, setFilter] = useState("");
+  const role = (filter === "ADMIN" ? "admin": "voter")
 
   useEffect(() => {
     setPage((prev) => ({ ...prev, pageIndex: 0 }));
@@ -26,7 +27,7 @@ const User = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `${apiUrl}/admin/user?name=${search}&kelas=${filter}&page=${
+        `${apiUrl}/admin/user?name=${search}&kelas=${filter}&role=${role}&page=${
           page.pageIndex + 1
         }`,
         {
